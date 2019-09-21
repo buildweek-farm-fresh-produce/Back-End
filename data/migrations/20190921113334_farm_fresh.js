@@ -46,7 +46,7 @@ exports.up = function (knex) {
             consumer.increments();
             consumer.string('username', 128).unique().notNullable();
             consumer.string('email', 128).unique().notNullable();
-            consumer.string('password', 128).unique().notNullable();
+            consumer.string('password', 128).notNullable();
             consumer.integer('city_id')
                 .unsigned()
                 .notNullable()
@@ -170,7 +170,7 @@ exports.up = function (knex) {
                 .inTable('farm')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
-        })
+        });
 };
 
 exports.down = function (knex) {
