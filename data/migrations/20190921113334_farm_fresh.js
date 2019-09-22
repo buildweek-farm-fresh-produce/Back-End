@@ -101,6 +101,7 @@ exports.up = function (knex) {
         })
         .createTable('order_item', item => {
             item.increments();
+            item.integer('quantity').notNullable();
             item.integer('produce_item_id')
                 .unsigned()
                 .notNullable()
