@@ -87,7 +87,7 @@ exports.up = function (knex) {
                 .onDelete('CASCADE');
         })
         .createTable('order', order => {
-            order.increments();
+            order.string('id').notNullable().unique();
             order.string('shipping_address', 256).notNullable();
             order.date('purchase_date').notNullable();
             order.boolean('delivered').notNullable();
@@ -109,7 +109,7 @@ exports.up = function (knex) {
                 .inTable('produce_item')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
-            item.integer('order_id')
+            item.string('order_id')
                 .unsigned()
                 .notNullable()
                 .references('id')
@@ -121,6 +121,13 @@ exports.up = function (knex) {
                 .notNullable()
                 .references('id')
                 .inTable('farm')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+            item.integer('consumer_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('consumer_user')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
         })
@@ -176,17 +183,17 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
     return knex.schema
-    .dropTableIfExists('farm_upgrade')
-    .dropTableIfExists('farm_tool')
-    .dropTableIfExists('tool')
-    .dropTableIfExists('tool_category')
-    .dropTableIfExists('order_item')
-    .dropTableIfExists('order')
-    .dropTableIfExists('produce_item')
-    .dropTableIfExists('produce_category')
-    .dropTableIfExists('consumer_user')
-    .dropTableIfExists('farm')
-    .dropTableIfExists('user_farmer')
-    .dropTableIfExists('state')
-    .dropTableIfExists('city');
+        .dropTableIfExists('farm_upgrade')
+        .dropTableIfExists('farm_tool')
+        .dropTableIfExists('tool')
+        .dropTableIfExists('tool_category')
+        .dropTableIfExists('order_item')
+        .dropTableIfExists('order')
+        .dropTableIfExists('produce_item')
+        .dropTableIfExists('produce_category')
+        .dropTableIfExists('consumer_user')
+        .dropTableIfExists('farm')
+        .dropTableIfExists('user_farmer')
+        .dropTableIfExists('state')
+        .dropTableIfExists('city');
 };

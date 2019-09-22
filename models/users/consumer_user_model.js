@@ -5,7 +5,8 @@ module.exports = {
     ordersByCustomerId,
     findLocalFarms,
     findByUsername,
-    addUser
+    addUser,
+    addOrder
 }
 
 function findById(id) {
@@ -27,9 +28,9 @@ function findByUsername(username) {
 function ordersByCustomerId(id) {
     return db('order as o')
     .where({
-        consumer_id: id
+        'o.consumer_id': id
     })
-    .join('order_item as oi', 'oi.order_id', 'o.id')
+    .join('order_item as oi', 'oi.consumer_id', 'o.consumer_id')
     .join('farm as f', 'f.id', 'oi.farm_id')
     .join('produce_item as pi', 'pi.id', 'oi.produce_item_id')
     .select('o.shipping_address', 'o.purchase_date', 'o.delivered', 'pi.name as item_purchased', 'oi.quantity', 'f.name as seller')
@@ -42,8 +43,15 @@ function findLocalFarms(cityId, stateId){
     .select('farm.name', 'farm.address', 'farm.year_founded', 'farm.bio', 'farm.id')
 }
 
-function addOrder(orderDetails){
-
+function addOrder(orderDetails, orderItems){
+    return db('order')
+    .insert(orderDetails)
+    .then( id => {
+        for(let i = 0 ; i < orderItems.length; i++){
+            return db('order_item')
+            .insert(orderItems[i])
+        }
+    })
 }
 
 function addUser(data){

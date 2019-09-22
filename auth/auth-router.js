@@ -10,7 +10,7 @@ router.post('/shop/login', (req, res) => {
         ShopUsers.findByUsername(credentials.username)
             .then(user => {
                 if (user && bcrypt.compareSync(credentials.password, user.password)) {
-                    const token = generateToken(user)
+                    const token = generateToken(user, 'consumer')
                     res.status(200).json({
                         message: 'Welcome',
                         user: user,
@@ -40,15 +40,15 @@ router.post('/shop/register', (req, res) => {
         userInfo.password = hash
         ShopUsers.addUser(userInfo)
             .then(user => {
-                const token = generateToken(user)
+                const token = generateToken(user, 'consumer')
                 res.status(201).json({
                     message: 'Created successfully.',
                     user: user,
                     token: token
                 })
             })
-            .catch(err => res.status(200).json({
-                message: 'An unexpected error occurred when adding the user.'
+            .catch(err => res.status(500).json({
+                message: 'An unexpected error occurred when adding the user, the error is most likely an unavailable username.'
             }))
     } else {
         res.status(401).json({
