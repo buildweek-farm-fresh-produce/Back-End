@@ -19,6 +19,13 @@ exports.seed = function (knex) {
       password: 'password',
       city_id: 3,
       state_id: 3
-    }
+    },
+    {
+      username: 'consumer_4',
+      email: 'consumer_4@gmail.com',
+      password: 'password',
+      city_id: 4,
+      state_id: 4
+    },
   ]);
 };
