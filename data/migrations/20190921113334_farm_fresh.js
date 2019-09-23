@@ -109,18 +109,18 @@ exports.up = function (knex) {
                 .inTable('produce_item')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
-            item.string('order_id')
-                .unsigned()
-                .notNullable()
-                .references('id')
-                .inTable('order')
-                .onUpdate('CASCADE')
-                .onDelete('CASCADE');
             item.integer('farm_id')
                 .unsigned()
                 .notNullable()
                 .references('id')
                 .inTable('farm')
+                .onUpdate('CASCADE')
+                .onDelete('CASCADE');
+            item.string('order_id')
+                .unsigned()
+                .notNullable()
+                .references('id')
+                .inTable('order')
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
             item.integer('consumer_id')

@@ -1,7 +1,8 @@
 const db = require('../data/dbConfig.js')
 
 module.exports = {
-    findLocal
+    findLocal,
+    add
 }
 
 function findLocal(cityId, stateId) {
@@ -11,4 +12,8 @@ function findLocal(cityId, stateId) {
             state_id: stateId
         })
         .select('farm.name', 'farm.address', 'farm.year_founded', 'farm.bio', 'farm.id')
+}
+
+function add(values){
+
 }

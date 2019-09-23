@@ -66,7 +66,7 @@ router.post('/order/:id', (req, res) => {
         "delivered": order.delivered,
         "consumer_id": Number(consumerId),
     }
-    console.log(orderDetails, orderItems)
+    // console.log(orderDetails, orderItems)
     Orders.add(orderDetails, orderItems)
         .then(order => res.status(201).json({
             order: order
