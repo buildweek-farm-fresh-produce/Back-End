@@ -1,5 +1,7 @@
 const express = require('express')
 const Consumers = require('../../models/users/consumer_user_model.js')
+const Farms = require('../../models/farm_model.js')
+const Orders = require('../../models/order_model.js')
 const router = express.Router();
 const uuidv1 = require('uuid/v1');
 
@@ -18,7 +20,7 @@ router.get('/:id/orders', (req, res) => {
     const {
         id
     } = req.params
-    Consumers.ordersByCustomerId(id)
+    Orders.findByCustomerId(id)
         .then(orders => {
             orders.forEach(order => {
                 if (order.delivered) {
@@ -40,7 +42,7 @@ router.get('/farms/:cityId/:stateId', (req, res) => {
         stateId
     } = req.params
 
-    Consumers.findLocalFarms(cityId, stateId)
+    Farms.findLocal(cityId, stateId)
         .then(orders => res.status(200).json(orders))
         .catch(err => res.status(500).json({
             message: "We couldn't get the users at this time."
@@ -52,12 +54,12 @@ router.post('/order/:id', (req, res) => {
     const orderId = uuidv1();
     let order = req.body
     let orderItems = order.order_items
-    for(let i = 0; i < orderItems.length; i++){
+    for (let i = 0; i < orderItems.length; i++) {
         orderItems[i].order_id = orderId
         orderItems[i].consumer_id = Number(consumerId)
     }
     order.id = orderId
-     orderDetails = {
+    orderDetails = {
         "id": order.id,
         "shipping_address": order.shipping_address,
         "purchase_date": order.purchase_date,
@@ -65,10 +67,13 @@ router.post('/order/:id', (req, res) => {
         "consumer_id": Number(consumerId),
     }
     console.log(orderDetails, orderItems)
-    Consumers.addOrder(orderDetails, orderItems)
-        .then( order => res.status(201).json({order: order}))
-        .catch( err => res.status(500).json({ error : err}))
-
+    Orders.add(orderDetails, orderItems)
+        .then(order => res.status(201).json({
+            order: order
+        }))
+        .catch(err => res.status(500).json({
+            error: err
+        }))
 })
 
 module.exports = router;
