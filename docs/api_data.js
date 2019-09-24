@@ -361,5 +361,104 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/consumer_routes/consumer_router.js",
     "groupTitle": "Shopping"
+  },
+  {
+    "type": "post",
+    "url": "/api/tools/categories",
+    "title": "Add Tool Category",
+    "name": "AddToolCategory",
+    "group": "Tools",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n\t\"name\": \"example\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "of",
+            "description": "<p>tool category posted</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n {\n   \"id\": 1,\n   \"name\": \"example\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
+  },
+  {
+    "type": "get",
+    "url": "/api/tools/categories",
+    "title": "Get Tool Categories",
+    "name": "GetToolCategories",
+    "group": "Tools",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "tools",
+            "description": "<p>array of tool category objects available to farmers</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"id\": 1,\n   \"name\": \"machinery\"\n },\n {\n   \"id\": 2,\n   \"name\": \"hand\"\n },\n {\n   \"id\": 3,\n   \"name\": \"irrigation\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
+  },
+  {
+    "type": "get",
+    "url": "/api/tools/category/:categoryId",
+    "title": "Get Tool Category By Id",
+    "name": "GetToolCategoryById",
+    "group": "Tools",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects",
+            "optional": false,
+            "field": "of",
+            "description": "<p>tool category requested</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n {\n   \"id\": 1,\n   \"name\": \"machinery\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
   }
 ] });
