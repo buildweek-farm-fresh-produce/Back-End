@@ -3,7 +3,8 @@ const db = require('../../data/dbConfig.js')
 module.exports = {
     findById,
     findByUsername,
-    addUser
+    addUser,
+    find
 }
 
 function findById(id) {
@@ -20,6 +21,10 @@ function findByUsername(username) {
             username: username
         })
         .first();
+}
+
+function find(){
+    return db('consumer_user');
 }
 
 function addUser(data) {

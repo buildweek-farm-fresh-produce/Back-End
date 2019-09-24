@@ -110,8 +110,8 @@ router.post('/shop/register', (req, res) => {
                 const token = generateToken(user, 'consumer')
                 res.status(201).json({
                     message: 'Created successfully.',
-                    user: user,
-                    token: token
+                    // user: user,
+                    // token: token
                 })
             })
             .catch(err => res.status(500).json({
@@ -122,6 +122,12 @@ router.post('/shop/register', (req, res) => {
             message: 'Please fill out the required fields for user onboarding.'
         })
     }
+})
+
+router.post('/shop/consumers', (req, res) => {
+    ShopUsers.find()
+    .then( users => res.status(200).json({users}))
+    .catch( err => res.status(500).json(err))
 })
 
 module.exports = router
