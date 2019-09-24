@@ -6,6 +6,35 @@ const Categories = require('../../models/categories_model.js')
 const router = express.Router();
 const uuidv1 = require('uuid/v1');
 
+/**
+ * @api {get} /api/consumers/:id Get Consumer By Id
+ * @apiName GetConsumerById
+ * @apiGroup Consumers
+ * 
+ * @apiParam {Number} id User Id
+ * 
+ * @apiSuccess {Number} id User_Id
+ * @apiSuccess {String} username User Username
+ * @apiSuccess {String} email User Email
+ * @apiSuccess {String} password User Password
+ * @apiSuccess {Number} city_id User City_Id
+ * @apiSuccess {Number} state_id User State_Id
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "id": 1,
+ *  "username": "consumer_1",
+ *  "email": "consumer_1@gmail.com",
+ *  "password": "password",
+ *  "city_id": 1,
+ *  "state_id": 1
+ * }
+ */
+
+ //! go to 12 minutes to see how to handle array documentation
+ //! 16 MIN for post req
+
 router.get('/:id', (req, res) => {
     const {
         id
@@ -36,6 +65,36 @@ router.get('/:id/orders', (req, res) => {
             message: "We couldn't get your orders at this time."
         }))
 })
+
+/**
+ * @api {get} /api/consumers/farms/:cityId/:stateId Get Local Farms
+ * @apiName GetLocalFarms
+ * @apiGroup Consumers
+ * 
+ * @apiParam {Number} cityId City_Id
+ * @apiParam {Number} stateId State_Id 
+ * 
+ * @apiSuccess {Objects[]} farms array of farm objects near consumer location
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * [
+ *  {
+ *    "name": "A.R. Farms",
+ *    "address": "2213 Orchard Rd.",
+ *    "year_founded": 1908,
+ *    "bio": "We are a farm.",
+ *    "id": 2
+ *  },
+ *  {
+ *    "name": "Blueberry Farms",
+ *    "address": "21576 Albers Rd.",
+ *    "year_founded": 1963,
+ *    "bio": "Locally Grown Produce.",
+ *    "id": 4
+ *  }
+ * ]
+ */
 
 router.get('/farms/:cityId/:stateId', (req, res) => {
     const {
