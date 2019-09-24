@@ -136,6 +136,39 @@ router.post('/order/:id', (req, res) => {
         }))
 })
 
+/**
+ * @api {get} /api/consumers/shop/:category/:categoryId Get Shopping Category Items
+ * @apiName GetCategoryItems
+ * @apiGroup Shopping
+ * 
+ * @apiParam {Number} categoryId Category_Id
+ * 
+ * @apiSuccess {Objects[]} produce item array of produce items in specified category
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * [
+ *  {
+ *    "id": 3,
+ *    "name": "apple",
+ *    "quantity": 100,
+ *    "price": 1.8,
+ *    "category_id": 1,
+ *    "farm_id": 2,
+ *    "farm_name": "A.R. Farms"
+ *  },
+ *  {
+ *    "id": 4,
+ *    "name": "peach",
+ *    "quantity": 100,
+ *    "price": 1.95,
+ *    "category_id": 1,
+ *    "farm_id": 2,
+ *    "farm_name": "A.R. Farms"
+ *  }
+ * ]
+ */
+
 router.get('/shop/category/:id', (req, res) => {
     const { id } = req.params
     Categories.findById(id)
@@ -144,6 +177,39 @@ router.get('/shop/category/:id', (req, res) => {
         })
         .catch( err => res.status(200).json(err))
 })
+
+/**
+ * @api {get} /api/consumers/shop/categories Get Shopping Categories
+ * @apiName GetCategories
+ * @apiGroup Shopping
+ * 
+ * @apiSuccess {Objects[]} categories array of produce categories to shop from.
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * [
+ *  {
+ *    "id": 1,
+ *    "name": "fruits"
+ *  },
+ *  {
+ *    "id": 2,
+ *    "name": "vegetables"
+ *  },
+ *  {
+ *    "id": 3,
+ *    "name": "grains"
+ *  },
+ *  {
+ *    "id": 4,
+ *    "name": "meats"
+ *  },
+ *  {
+ *    "id": 5,
+ *    "name": "dairy"
+ *  }
+ * ]
+ */
 
 router.get('/shop/categories', (req, res) => {
     Categories.find()
