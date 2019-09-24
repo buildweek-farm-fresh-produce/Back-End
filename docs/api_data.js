@@ -444,7 +444,7 @@ define({ "api": [
             "group": "Success 200",
             "type": "Objects",
             "optional": false,
-            "field": "of",
+            "field": "tool_category",
             "description": "<p>tool category requested</p>"
           }
         ]
