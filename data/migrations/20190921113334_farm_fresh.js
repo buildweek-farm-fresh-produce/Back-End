@@ -165,11 +165,11 @@ exports.up = function (knex) {
                 .onDelete('CASCADE');
         })
         .createTable('farm_upgrade', upgrade => {
-            upgrade.increments()
+            upgrade.increments();
             upgrade.string('name', 158).notNullable();
             upgrade.float('price');
             upgrade.boolean('purchased').notNullable();
-            upgrade.blob('image');
+            upgrade.binary('image');
             upgrade.binary('purchase_links');
             upgrade.integer('farm_id')
                 .unsigned()
