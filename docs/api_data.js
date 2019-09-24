@@ -288,5 +288,78 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "./routes/consumer_routes/consumer_router.js",
     "groupTitle": "Consumers"
+  },
+  {
+    "type": "get",
+    "url": "/api/consumers/shop/categories",
+    "title": "Get Shopping Categories",
+    "name": "GetCategories",
+    "group": "Shopping",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "categories",
+            "description": "<p>array of produce categories to shop from.</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"id\": 1,\n   \"name\": \"fruits\"\n },\n {\n   \"id\": 2,\n   \"name\": \"vegetables\"\n },\n {\n   \"id\": 3,\n   \"name\": \"grains\"\n },\n {\n   \"id\": 4,\n   \"name\": \"meats\"\n },\n {\n   \"id\": 5,\n   \"name\": \"dairy\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/consumer_routes/consumer_router.js",
+    "groupTitle": "Shopping"
+  },
+  {
+    "type": "get",
+    "url": "/api/consumers/shop/:category/:categoryId",
+    "title": "Get Shopping Category Items",
+    "name": "GetCategoryItems",
+    "group": "Shopping",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "categoryId",
+            "description": "<p>Category_Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "produce",
+            "description": "<p>item array of produce items in specified category</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"id\": 3,\n   \"name\": \"apple\",\n   \"quantity\": 100,\n   \"price\": 1.8,\n   \"category_id\": 1,\n   \"farm_id\": 2,\n   \"farm_name\": \"A.R. Farms\"\n },\n {\n   \"id\": 4,\n   \"name\": \"peach\",\n   \"quantity\": 100,\n   \"price\": 1.95,\n   \"category_id\": 1,\n   \"farm_id\": 2,\n   \"farm_name\": \"A.R. Farms\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/consumer_routes/consumer_router.js",
+    "groupTitle": "Shopping"
   }
 ] });
