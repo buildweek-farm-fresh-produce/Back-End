@@ -110,8 +110,8 @@ router.post('/shop/register', (req, res) => {
                 const token = generateToken(user, 'consumer')
                 res.status(201).json({
                     message: 'Created successfully.',
-                    // user: user,
-                    // token: token
+                    user: user,
+                    token: token
                 })
             })
             .catch(err => res.status(500).json({
