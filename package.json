@@ -6,7 +6,8 @@
   "scripts": {
     "test": "cross-env DB_ENV=testing jest --watch",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "docs": "apidoc -i ./ -e node_modules -o ./docs"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,7 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
+    "apidoc": "^0.17.7",
     "cross-env": "^6.0.0",
     "jest": "^24.9.0",
     "nodemon": "^1.19.2",

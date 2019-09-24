@@ -16,4 +16,6 @@ server.get('/', (req, res) => {
 server.use('/api/consumers', consumerRoutes)
 server.use('/api/auth', authRoutes)
 
+server.use('/docs', express.static('./docs'));
+
 module.exports = server

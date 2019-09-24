@@ -4,6 +4,38 @@ const router = express.Router();
 const ShopUsers = require('../models/users/consumer_user_model.js')
 const generateToken = require('../middleware/generateToken.js')
 
+/**
+ * @api {post} /api/auth/shop/login Consumer Login Request
+ * @apiName Consumer Login
+ * @apiGroup Auth
+ * 
+ * 
+ * @apiSuccess {String} message User Message
+ * @apiSuccess {Object} user User User
+ * @apiSuccess {String} token User Token
+ * 
+ * @apiParamExample Example Body:
+ * {
+ *	"username": "example",
+ *	"password": "password"
+ * }
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "message": "Welcome",
+ *  "user": {
+ *    "id": 5,
+ *    "username": "example",
+ *    "email": "example@gmonk.com",
+ *    "password": "$2a$14$IF9EQY7mpuNU2a5TVAAE8O7GLmcHBFRvEiv5jCl5RT1uJa1mojudS",
+ *    "city_id": 1,
+ *    "state_id": 1
+ *  },
+ *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicGd1c2VyMTAwIiwidXNlclR5cGUiOiJjb25zdW1lciIsImlhdCI6MTU2OTM0NzE3NiwiZXhwIjoxNTY5NDMzNTc2fQ.EfLfuc_DcYZ5TtjM-Zpd7mwkUPozNhYh-i5jg3YQ-us"
+ * }
+ */
+
 router.post('/shop/login', (req, res) => {
     let credentials = req.body
     if (credentials.username && credentials.password) {
@@ -31,6 +63,32 @@ router.post('/shop/login', (req, res) => {
         })
     }
 })
+
+/**
+ * @api {post} /api/auth/shop/register Consumer Register Request
+ * @apiName Consumer Register
+ * @apiGroup Auth
+ * 
+ * 
+ * @apiSuccess {String} message User Message
+ * @apiSuccess {Object} user User User
+ * @apiSuccess {String} token User Token
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "message": "Welcome",
+ *  "user": {
+ *    "id": 5,
+ *    "username": "pguser10",
+ *    "email": "pguser10@gmail.com",
+ *    "password": "$2a$14$IF9EQY7mpuNU2a5TVAAE8O7GLmcHBFRvEiv5jCl5RT1uJa1mojudS",
+ *    "city_id": 1,
+ *    "state_id": 1
+ *  },
+ *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicGd1c2VyMTAwIiwidXNlclR5cGUiOiJjb25zdW1lciIsImlhdCI6MTU2OTM0NzE3NiwiZXhwIjoxNTY5NDMzNTc2fQ.EfLfuc_DcYZ5TtjM-Zpd7mwkUPozNhYh-i5jg3YQ-us"
+ * }
+ */
 
 router.post('/shop/register', (req, res) => {
     let userInfo = req.body
