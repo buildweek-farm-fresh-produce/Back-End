@@ -74,14 +74,23 @@ router.post('/shop/login', (req, res) => {
  * @apiSuccess {Object} user User User
  * @apiSuccess {String} token User Token
  * 
+ * @apiParamExample Example Body:
+ * {
+ *	"username": "example",
+ *	"email": "example@gmonk.com",
+ *	"password": "password",
+ *	"city_id": "1",
+ *	"state_id": "1"
+ * }
+ * 
  * @apiSuccessExample Successful Response:
  * HTTP/1.1 200 OK
  * {
  *  "message": "Welcome",
  *  "user": {
  *    "id": 5,
- *    "username": "pguser10",
- *    "email": "pguser10@gmail.com",
+ *    "username": "example",
+ *    "email": "example@gmail.com",
  *    "password": "$2a$14$IF9EQY7mpuNU2a5TVAAE8O7GLmcHBFRvEiv5jCl5RT1uJa1mojudS",
  *    "city_id": 1,
  *    "state_id": 1
