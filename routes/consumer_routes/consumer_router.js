@@ -2,6 +2,7 @@ const express = require('express')
 const Consumers = require('../../models/users/consumer_user_model.js')
 const Farms = require('../../models/farm_model.js')
 const Orders = require('../../models/order_model.js')
+const Categories = require('../../models/categories_model.js')
 const router = express.Router();
 const uuidv1 = require('uuid/v1');
 
@@ -74,6 +75,21 @@ router.post('/order/:id', (req, res) => {
         .catch(err => res.status(500).json({
             error: err
         }))
+})
+
+router.get('/shop/category/:id', (req, res) => {
+    const { id } = req.params
+    Categories.findById(id)
+        .then(categories => {
+            res.status(200).json(categories)
+        })
+        .catch( err => res.status(200).json(err))
+})
+
+router.get('/shop/categories', (req, res) => {
+    Categories.find()
+    .then( categories => res.status(200).json(categories))
+    .catch( err => res.status(200).json(err))
 })
 
 module.exports = router;
