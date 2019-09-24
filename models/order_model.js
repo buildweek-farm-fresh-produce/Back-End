@@ -2,7 +2,7 @@ const db = require('../data/dbConfig.js')
 
 module.exports = {
     add,
-    findByCustomerId
+    findByCustomerId,
 }
 
 function add(orderDetails, orderItems) {
@@ -14,14 +14,16 @@ function add(orderDetails, orderItems) {
                 dataToSubmit = {
                     quantity: orderItems[i].quantity,
                     produce_item_id: orderItems[i].produce_item_id,
-                    order_id: orderItems[i].order_id,
                     farm_id:orderItems[i].farm_id,
+                    order_id: orderItems[i].order_id,
                     consumer_id: orderItems[i].consumer_id
                 }
                 db('order_item')
                     .insert(dataToSubmit)
             }
         })
+        .then(() => findByCustomerId(orderDetails.consumer_id))
+        .catch( err => err)
 }
 
 
@@ -36,6 +38,5 @@ function findByCustomerId(id) {
             'pi.farm_id': 'oi.farm_id'
         })
         .select('o.shipping_address', 'o.purchase_date', 'o.delivered', 'pi.name as item_purchased', 'oi.quantity', 'f.name as seller')
-        // .groupBy('o.purchase_date')
         .orderBy('o.purchase_date', 'desc');
 };

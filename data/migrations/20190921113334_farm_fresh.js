@@ -87,7 +87,7 @@ exports.up = function (knex) {
                 .onDelete('CASCADE');
         })
         .createTable('order', order => {
-            order.string('id').notNullable().unique();
+            order.string('id').notNullable().unique().primary();
             order.string('shipping_address', 256).notNullable();
             order.date('purchase_date').notNullable();
             order.boolean('delivered').notNullable();
