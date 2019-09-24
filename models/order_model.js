@@ -36,5 +36,6 @@ function findByCustomerId(id) {
             'pi.farm_id': 'oi.farm_id'
         })
         .select('o.shipping_address', 'o.purchase_date', 'o.delivered', 'pi.name as item_purchased', 'oi.quantity', 'f.name as seller')
+        // .groupBy('o.purchase_date')
         .orderBy('o.purchase_date', 'desc');
 };

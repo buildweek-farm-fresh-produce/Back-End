@@ -12,7 +12,12 @@ module.exports = {
     },
     seeds: {
       directory: './data/seeds'
-    }
+    },
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run('PRAGMA foreign_keys = ON', done);
+      },
+    },
   },
   testing: {
     client: 'sqlite3',
@@ -29,19 +34,23 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'sqlite3',
+    useNullAsDefault: true,
     connection: {
-      database: 'my_db',
-      user: 'username',
-      password: 'password'
+      filename: './data/blog.db3',
     },
     pool: {
-      min: 2,
-      max: 10
+      afterCreate: (conn, done) => {
+        conn.run('PRAGMA foreign_keys = ON', done);
+      },
     },
     migrations: {
-      tableName: 'knex_migrations'
-    }
-  }
+      directory: './data/migrations',
+      tableName: 'knex_migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
 
 };
