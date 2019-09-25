@@ -178,7 +178,7 @@ router.delete('/:farmId', (req, res) => {
  *  {
  *    "shipping_address": "Example Rd.",
  *    "purchase_date": "2019-10-07",
- *    "delivered": 0,
+ *    "delivered": true,
  *    "item_purchased": "potato",
  *    "quantity": 5,
  *    "buyer": "example_user2122"
@@ -186,7 +186,7 @@ router.delete('/:farmId', (req, res) => {
  *  {
  *    "shipping_address": "Example Rd.",
  *    "purchase_date": "2019-10-07",
- *    "delivered": 0,
+ *    "delivered": true,
  *    "item_purchased": "potato",
  *    "quantity": 5,
  *    "buyer": "example_user2122"
@@ -194,7 +194,7 @@ router.delete('/:farmId', (req, res) => {
  *  {
  *    "shipping_address": "Example Rd.",
  *    "purchase_date": "2019-10-07",
- *    "delivered": 0,
+ *    "delivered": true,
  *    "item_purchased": "potato",
  *    "quantity": 5,
  *    "buyer": "example_user7"
@@ -207,6 +207,13 @@ router.get('/:farmId/orders', (req, res) => {
 
     Orders.findByFarmId(farmId)
         .then( items => {
+            items.forEach(item => {
+                if(item.delivered){
+                    item.delivered = true
+                }else{
+                    item.delivered = false
+                }
+            })
             res.status(200).json(items)
         })
         .catch( err => res.status(500).json(err))
