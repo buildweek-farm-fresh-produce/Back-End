@@ -51,8 +51,11 @@ router.get('/categories', (req, res) => {
  * 
  * @apiSuccessExample Successful Response:
  * HTTP/1.1 201 CREATED
- * {
- *  "new_category": 8
+ * { 
+ *  "new_category": {
+ *    "id": 6,
+ *    "name": "example"
+ *  }
  * }
  */
 
@@ -123,14 +126,21 @@ router.get('/:farmId', (req, res) => {
  * 
  * @apiParamExample Example Body:
  * {
- *	"name": "beef-ribs",
+ *	"name": "example",
  *  "quantity": 20,
- *  "price": 5.25,
+ *  "price": 0.8,
  *  "category_id": 4
  * }
  * 
  * @apiSuccessExample Successful Response:
- * 11
+ * {
+ *  "id": 8,
+ *  "name": "example",
+ *  "quantity": 20,
+ *  "price": 0.8,
+ *  "category_id": 1,
+ *  "farm_id": 3
+ * }
  */
 
 router.post('/:farmId', (req, res) => {

@@ -452,7 +452,7 @@
       "examples": [
         {
           "title": "Successful Response:",
-          "content": "HTTP/1.1 201 CREATED\n{\n \"new_category\": 8\n}",
+          "content": "HTTP/1.1 201 CREATED\n{ \n \"new_category\": {\n   \"id\": 6,\n   \"name\": \"example\"\n }\n}",
           "type": "json"
         }
       ]
@@ -491,7 +491,7 @@
       "examples": [
         {
           "title": "Successful Response:",
-          "content": "11",
+          "content": "{\n \"id\": 8,\n \"name\": \"example\",\n \"quantity\": 20,\n \"price\": 0.8,\n \"category_id\": 1,\n \"farm_id\": 3\n}",
           "type": "json"
         }
       ]
@@ -500,7 +500,7 @@
       "examples": [
         {
           "title": "Example Body:",
-          "content": "{\n\t\"name\": \"beef-ribs\",\n \"quantity\": 20,\n \"price\": 5.25,\n \"category_id\": 4\n}",
+          "content": "{\n\t\"name\": \"example\",\n \"quantity\": 20,\n \"price\": 0.8,\n \"category_id\": 4\n}",
           "type": "json"
         }
       ]
