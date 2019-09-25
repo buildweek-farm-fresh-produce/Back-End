@@ -3,31 +3,38 @@ const db = require('../data/dbConfig')
 module.exports = {
     add,
     find,
-    findById,
+    findByFarmId,
+    findByName,
     update,
     remove,
 }
 
-async function add(toolData, farmToolData){
+async function add(toolData){
     const [newTool] = await db("tool")
-        .insert(toolData)
-        .returning("*");
+            .insert(toolData)
+            .returning("*");
 
-    const [newFarmTool] = await db('farm_tool')
-        .insert(farmToolData)
-        .returning('*')
-
-    return {tool_added: newTool, farm_tool_data: newFarmTool};
+    return {tool_added: newTool};
 }
 
-function find(){
+async function find(){
     return db('tool')
 }
 
-function findById(id){
+async function findByFarmId(farmId){
+    const [tools] = await db('farm_tool as ft')
+    .where({'ft.farm_id': farmId})
+    .join('tool as t', 't.id', 'ft.tool_id')
+    .join('tool_category as tc', 'tc.id', 't.tool_category_id')
+    .select('t.id as tool_id:', 't.name as tool_name', "ft.quantity as quantity", "tc.name as tool_category", 'tc.name as tool_category_id');
+
+    return tools
+}
+
+function findByName(name){
     return db('tool')
-    .where({id: id})
-    .first()
+    .where({name: name})
+    .first();
 }
 
 function update(id, values){

@@ -434,7 +434,7 @@
   {
     "type": "post",
     "url": "/api/auth/consumers/order/:consumerId",
-    "title": "Consumer Order",
+    "title": "Post Consumer Order",
     "name": "Consumer_Order",
     "group": "Shopping",
     "success": {
@@ -545,6 +545,45 @@
   },
   {
     "type": "post",
+    "url": "/api/tools/farms/:farmId",
+    "title": "Add Tool",
+    "name": "AddTool",
+    "group": "Tools",
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n\t\"name\": \"Wheel Barrow\" ,\n\t\"tool_category_id\": 2 ,\n\t\"farm_tool_data\": {\n\t\t\"quantity\": 3,\n\t\t\"tool_id\": 10\n\t}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "with",
+            "description": "<p>new tool id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 201 CREATED\n{\n \"new_tool\": 23\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
+  },
+  {
+    "type": "post",
     "url": "/api/tools/categories",
     "title": "Add Tool Category",
     "name": "AddToolCategory",
@@ -634,6 +673,96 @@
         {
           "title": "Successful Response:",
           "content": "HTTP/1.1 200 OK\n {\n   \"id\": 1,\n   \"name\": \"machinery\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
+  },
+  {
+    "type": "get",
+    "url": "/api/tools/farm/:farmId",
+    "title": "Get Farms Tool By Id",
+    "name": "Get_A_Farms_Tools",
+    "group": "Tools",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "tools_array",
+            "description": "<p>of a farms current tool inventory</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"name\": \"Harvester\",\n   \"quantity\": 10,\n   \"farm_tool_id\": 13,\n   \"farm_id\": 3\n },\n {\n   \"name\": \"Tree Shaker\",\n   \"quantity\": 20,\n   \"farm_tool_id\": 14,\n   \"farm_id\": 3\n },\n {\n   \"name\": \"Tiller\",\n   \"quantity\": 7,\n   \"farm_tool_id\": 15,\n   \"farm_id\": 3\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
+  },
+  {
+    "type": "get",
+    "url": "/api/tools/:farmId/:farmId",
+    "title": "Get single Tool By Id",
+    "name": "Get_A_Single_Tool_From_A_Farm",
+    "group": "Tools",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "object",
+            "description": "<p>of a single tools status for a farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"name\": \"Tree Shaker\",\n \"quantity\": 20,\n \"farm_tool_id\": 14,\n \"farm_id\": 3\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/tools_router.js",
+    "groupTitle": "Tools"
+  },
+  {
+    "type": "get",
+    "url": "/api/tools/",
+    "title": "Get All Tools",
+    "name": "Get_All_Tools",
+    "group": "Tools",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "object",
+            "description": "<p>of all tool options for a farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n  {\n    \"id\": 1,\n    \"name\": \"Harvester\",\n    \"tool_category_id\": 1\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Tree Shaker\",\n    \"tool_category_id\": 1\n  },\n  {\n    \"id\": 3,\n    \"name\": \"Tiller\",\n    \"tool_category_id\": 1\n  },\n  {\n    \"id\": 4,\n    \"name\": \"Shovel\",\n    \"tool_category_id\": 2\n  }\n]",
           "type": "json"
         }
       ]
