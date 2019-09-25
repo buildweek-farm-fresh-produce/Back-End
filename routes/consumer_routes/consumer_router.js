@@ -32,9 +32,6 @@ const uuidv1 = require('uuid/v1');
  * }
  */
 
- //! go to 12 minutes to see how to handle array documentation
- //! 16 MIN for post req
-
 router.get('/:id', (req, res) => {
     const {
         id
