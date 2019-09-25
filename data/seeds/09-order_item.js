@@ -1,7 +1,7 @@
 exports.seed = function (knex) {
   return knex('order_item').insert([{
-    quantity: 25,  
-    produce_item_id: 1,
+      quantity: 25,
+      produce_item_id: 1,
       order_id: 'supersecret1',
       farm_id: 1,
       consumer_id: 1
@@ -96,6 +96,6 @@ exports.seed = function (knex) {
       order_id: 'supersecret1',
       farm_id: 3,
       consumer_id: 1
-    },
+    }
   ]);
 };

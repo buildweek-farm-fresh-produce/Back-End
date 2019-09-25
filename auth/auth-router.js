@@ -2,6 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const router = express.Router();
 const ShopUsers = require('../models/users/consumer_user_model.js')
+const FarmerUsers = require('../models/users/farmer_user_model.js')
 const generateToken = require('../middleware/generateToken.js')
 
 /**
@@ -124,10 +125,119 @@ router.post('/shop/register', (req, res) => {
     }
 })
 
+/**
+ * @api {post} /api/auth/farmer/login Farmer Login Request
+ * @apiName Farmer Login
+ * @apiGroup Auth
+ * 
+ * 
+ * @apiSuccess {Object} user User User
+ * @apiSuccess {String} token User Token
+ * 
+ * @apiParamExample Example Body:
+ * {
+ *	"username": "example",
+ *	"password": "password"
+ * }
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "user": {
+ *    "id": 5,
+ *    "username": "example",
+ *    "email": "example@gmonk.com",
+ *    "password": "$2a$14$IF9EQY7mpuNU2a5TVAAE8O7GLmcHBFRvEiv5jCl5RT1uJa1mojudS",
+ *  },
+ *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicGd1c2VyMTAwIiwidXNlclR5cGUiOiJjb25zdW1lciIsImlhdCI6MTU2OTM0NzE3NiwiZXhwIjoxNTY5NDMzNTc2fQ.EfLfuc_DcYZ5TtjM-Zpd7mwkUPozNhYh-i5jg3YQ-us"
+ * }
+ */
+
+router.post('farmer/login', (req, res) => {
+    const credentials = req.body
+    if(credentials.password && credentials.username){
+        FarmerUsers.findByUsername(credentials.username)
+            .then( user => {
+                if(user && bcrypt.compareSync(credentials.password, user.password)){
+                    const token = generateToken(user, 'farmer')
+                    res.status(200).json({user: user, token: token})
+                }else{
+                    res.status(401).json({message: 'invalid credentials'})
+                }
+            })
+    }else{
+        res.status(401).json({message: 'please provide user credentials.'})
+    }
+})
+
+/**
+ * @api {post} /api/auth/farmer/register Farmer Register Request
+ * @apiName Farmer Register
+ * @apiGroup Auth
+ * 
+ * 
+ * @apiSuccess {String} message User Message
+ * @apiSuccess {Object} user User User
+ * @apiSuccess {String} token User Token
+ * 
+ * @apiParamExample Example Body:
+ * {
+ *	"username": "example",
+ *	"email": "example@gmonk.com",
+ *	"password": "password"
+ * }
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "message": "Welcome",
+ *  "user": {
+ *    "id": 5,
+ *    "username": "example",
+ *    "email": "example@gmail.com",
+ *    "password": "$2a$14$IF9EQY7mpuNU2a5TVAAE8O7GLmcHBFRvEiv5jCl5RT1uJa1mojudS"
+ *  },
+ *  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoicGd1c2VyMTAwIiwidXNlclR5cGUiOiJjb25zdW1lciIsImlhdCI6MTU2OTM0NzE3NiwiZXhwIjoxNTY5NDMzNTc2fQ.EfLfuc_DcYZ5TtjM-Zpd7mwkUPozNhYh-i5jg3YQ-us"
+ * }
+ */
+
+router.post('/farmer/register', (req, res) => {
+    let userInfo = req.body
+
+    if (userInfo.username && userInfo.email && userInfo.password) {
+        const hash = bcrypt.hashSync(userInfo.password, 14)
+        userInfo.password = hash
+        FarmerUsers.add(userInfo)
+            .then(user => {
+                const token = generateToken(user, 'farmer')
+                res.status(201).json({
+                    message: 'Created successfully.',
+                    user: user,
+                    token: token
+                })
+            })
+            .catch(err => res.status(500).json({
+                message: 'An unexpected error occurred when adding the user, the error is most likely an unavailable username.'
+            }))
+    } else {
+        res.status(401).json({
+            message: 'Please fill out the required fields for user onboarding.'
+        })
+    }
+})
+
 router.get('/shop/consumers', (req, res) => {
     ShopUsers.find()
     .then( users => res.status(200).json({users}))
     .catch( err => res.status(500).json(err))
 })
+
+router.get('/farm/users', (req, res) => {
+    FarmerUsers.find()
+    .then( users => res.status(200).json({users}))
+    .catch( err => res.status(500).json(err))
+})
+
+
 
 module.exports = router

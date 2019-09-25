@@ -41,7 +41,7 @@ router.get('/categories', (req, res) => {
  * @apiGroup Tools
  * 
  * 
- * @apiSuccess {Objects} of tool category requested
+ * @apiSuccess {Objects} tool_category tool category requested
  * 
  * @apiSuccessExample Successful Response:
  * HTTP/1.1 200 OK
