@@ -82,8 +82,8 @@ router.post('/categories', (req, res) => {
     const categoryData = req.body
     if(categoryData.name){
         ToolsCategory.add(categoryData)
-            .then(category => res.status(201).json(category))
-            .catch( err => res.status(500).json({message: 'There was an error creating your category.'}))
+            .then((category) => res.status(201).json({category: category}))
+            .catch(err => res.status(500).json({message: 'There was an error creating your category.'}))
     }else{
         res.status(401).json({message: 'Please provide the name for your category.'})
     }
