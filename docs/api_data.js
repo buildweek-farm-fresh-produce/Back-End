@@ -432,6 +432,114 @@ define({ "api": [
     "groupTitle": "Consumers"
   },
   {
+    "type": "post",
+    "url": "/api/farms/:farmerId",
+    "title": "Add Farm",
+    "name": "AddFarm",
+    "group": "Farm",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "farm",
+            "description": "<p>Farm farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 201 CREATED\n{ \n \"new_category\": {\n   \"id\": 6,\n   \"name\": \"example\"\n }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n \"name\": \"Example Farm\",\n \"address\": \"23528 Example Rd.\",\n \"year_founded\": \"1894\",\n \"bio\": \"Locally Grown Produce.\",\n \"city_id\": 2,\n\t\"state_id\": 2\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farm_router.js",
+    "groupTitle": "Farm"
+  },
+  {
+    "type": "delete",
+    "url": "/api/farms/:farmId",
+    "title": "Delete A Farm",
+    "name": "DeleteFarm",
+    "group": "Farm",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Message message</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"message\": \"deleted successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farm_router.js",
+    "groupTitle": "Farm"
+  },
+  {
+    "type": "put",
+    "url": "/api/farms/:farmId",
+    "title": "Update Farm",
+    "name": "UpdateFarm",
+    "group": "Farm",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "farm",
+            "description": "<p>Farm farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"id\": 5,\n \"name\": \"Example Farms\",\n \"address\": \"23528 Example Rd.\",\n \"year_founded\": 1894,\n \"bio\": \"Locally Grown Produce.\",\n \"farmer_id\": 3,\n \"city_id\": 2,\n \"state_id\": 2\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n \"name\": \"Example Farms\",\n \"address\": \"23528 Example Rd.\",\n \"year_founded\": \"1894\",\n \"bio\": \"Locally Grown Produce.\",\n\t\"farmer_id\": 3,\n \"city_id\": 2,\n\t\"state_id\": 2\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farm_router.js",
+    "groupTitle": "Farm"
+  },
+  {
     "type": "get",
     "url": "/api/farmers/:id",
     "title": "Get Farmer By Id",

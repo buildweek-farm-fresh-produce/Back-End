@@ -38,25 +38,4 @@ router.get('/:id', (req, res) => {
         }))
 })
 
-router.get('/:id/orders', (req, res) => {
-    const {
-        id
-    } = req.params
-    Orders.findByFarmerId(id)
-        .then(orders => {
-            orders.forEach(order => {
-                if (order.delivered) {
-                    order.delivered = true
-                } else {
-                    order.delivered = false
-                }
-            })
-            res.status(200).json(orders)
-        })
-        .catch(err => res.status(500).json({
-            message: "We couldn't get your orders at this time."
-        }))
-})
-
-
 module.exports = router;
