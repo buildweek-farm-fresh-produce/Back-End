@@ -10,7 +10,7 @@ module.exports = {
 function add(userData){
     return db('user_farmer')
     .insert(userData)
-    .then( ([id]) => findById(id))
+    .then(([id]) => findById(id))
     .catch(err => err);
 }
 
