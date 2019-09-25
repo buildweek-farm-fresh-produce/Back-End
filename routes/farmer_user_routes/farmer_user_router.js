@@ -1,9 +1,31 @@
 const express = require('express')
 const Farmers = require('../../models/users/farmer_user_model.js')
-const Farms = require('../../models/farm_model.js')
 const Orders = require('../../models/order_model.js')
 const router = express.Router();
-const uuidv1 = require('uuid/v1');
+
+/**
+ * @api {get} /api/farmers/:id Get Farmer By Id
+ * @apiName GetFarmerById
+ * @apiGroup Farmers
+ * 
+ * @apiParam {Number} id User Id
+ * 
+ * @apiSuccess {Number} id User_Id
+ * @apiSuccess {String} username User Username
+ * @apiSuccess {String} email User Email
+ * @apiSuccess {String} password User Password
+ * @apiSuccess {Number} city_id User City_Id
+ * @apiSuccess {Number} state_id User State_Id
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "id": 1,
+ *  "username": "emaxple_1",
+ *  "email": "emaxple_1@gmail.com",
+ *  "password": "password"
+ * }
+ */
 
 router.get('/:id', (req, res) => {
     const {
@@ -36,44 +58,5 @@ router.get('/:id/orders', (req, res) => {
         }))
 })
 
-router.get('/farms/:cityId/:stateId', (req, res) => {
-    const {
-        cityId,
-        stateId
-    } = req.params
-
-    Farms.findLocal(cityId, stateId)
-        .then(orders => res.status(200).json(orders))
-        .catch(err => res.status(500).json({
-            message: "We couldn't get the users at this time."
-        }))
-})
-
-router.post('/order/:id', (req, res) => {
-    const farmerId = req.params.id
-    const orderId = uuidv1();
-    let order = req.body
-    let orderItems = order.order_items
-    for (let i = 0; i < orderItems.length; i++) {
-        orderItems[i].order_id = orderId
-        orderItems[i].farmer_id = Number(farmerId)
-    }
-    order.id = orderId
-    orderDetails = {
-        "id": order.id,
-        "shipping_address": order.shipping_address,
-        "purchase_date": order.purchase_date,
-        "delivered": order.delivered,
-        "farmer_id": Number(farmerId),
-    }
-    // console.log(orderDetails, orderItems)
-    Orders.add(orderDetails, orderItems)
-        .then(order => res.status(201).json({
-            order: order
-        }))
-        .catch(err => res.status(500).json({
-            error: err
-        }))
-})
 
 module.exports = router;

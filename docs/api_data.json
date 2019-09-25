@@ -432,6 +432,84 @@
     "groupTitle": "Consumers"
   },
   {
+    "type": "get",
+    "url": "/api/farmers/:id",
+    "title": "Get Farmer By Id",
+    "name": "GetFarmerById",
+    "group": "Farmers",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>User_Id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>User Username</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User Email</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>User Password</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "city_id",
+            "description": "<p>User City_Id</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "state_id",
+            "description": "<p>User State_Id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"id\": 1,\n \"username\": \"emaxple_1\",\n \"email\": \"emaxple_1@gmail.com\",\n \"password\": \"password\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_user_routes/farmer_user_router.js",
+    "groupTitle": "Farmers"
+  },
+  {
     "type": "post",
     "url": "/api/farmers/produce/categories",
     "title": "Add Produce Category",

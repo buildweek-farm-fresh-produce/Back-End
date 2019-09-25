@@ -221,7 +221,6 @@ router.put('/:farmId/:itemId', (req, res) => {
  * }
  */
 
-
 router.delete('/:itemId', (req, res) => {
     const {itemId} = req.params
         ProduceItem.remove(itemId)
