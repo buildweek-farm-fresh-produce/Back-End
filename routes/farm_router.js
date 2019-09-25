@@ -10,6 +10,38 @@ router.get('/', (req, res) => {
 })
 
 /**
+ * @api {get} /api/farms/:farmId Get Farm By Id
+ * @apiName GetFarmByID
+ * @apiGroup Farm
+ * 
+ * 
+ * @apiSuccess {Object} farm Farm farm
+ * 
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "id": 1,
+ *  "name": "Organic Farms",
+ *  "address": "1213 Dairy Rd.",
+ *  "year_founded": 1955,
+ *  "bio": "We sell only the best.",
+ *  "farmer_id": 1,
+ *  "city_id": 1,
+ *  "state_id": 1
+ * }
+ */
+
+router.get('/:farmId', (req, res) => {
+    const {farmId} = req.params
+    Farms.findById(farmId)
+    .then(farm => {
+        res.status(200).json(farm)
+    })
+    .catch(err => res.status(500).json(err))
+})
+
+/**
  * @api {post} /api/farms/:farmerId Add Farm
  * @apiName AddFarm
  * @apiGroup Farm

@@ -5,7 +5,8 @@ module.exports = {
     add,
     find,
     update,
-    remove
+    remove,
+    findById
 }
 
 function findLocal(cityId, stateId) {
@@ -45,4 +46,10 @@ function remove(id){
     return db('farm')
     .where({id: id})
     .delete();
+}
+
+function findById(id){
+    return db('farm')
+    .where({id: id})
+    .first();
 }
