@@ -85,7 +85,7 @@ router.post('/shop/login', (req, res) => {
  * }
  * 
  * @apiSuccessExample Successful Response:
- * HTTP/1.1 200 OK
+ * HTTP/1.1 201 CREATED
  * {
  *  "message": "Welcome",
  *  "user": {
@@ -188,7 +188,7 @@ router.post('farmer/login', (req, res) => {
  * }
  * 
  * @apiSuccessExample Successful Response:
- * HTTP/1.1 200 OK
+ * HTTP/1.1 201 CREATED
  * {
  *  "message": "Welcome",
  *  "user": {
