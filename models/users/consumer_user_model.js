@@ -23,13 +23,16 @@ function findByUsername(username) {
         .first();
 }
 
-function find(){
+function find() {
     return db('consumer_user');
 }
 
-function addUser(data) {
-    return db('consumer_user')
+async function addUser(data) {
+    const [newUser] = await db("consumer_user")
         .insert(data)
-        .then(([id]) => findById(id))
+        .returning("*");
+
+    return newUser;
 }
+
 
