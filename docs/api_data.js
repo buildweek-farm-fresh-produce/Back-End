@@ -570,6 +570,45 @@ define({ "api": [
     "groupTitle": "Farmers_Produce"
   },
   {
+    "type": "put",
+    "url": "/api/farmers/produce/:farmId/:itemId",
+    "title": "Update Produce Item",
+    "name": "UpdateProduceItem",
+    "group": "Farmers_Produce",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "produce_item",
+            "description": "<p>Produce produce_item</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "{\n \"id\": 8,\n \"name\": \"example\",\n \"quantity\": 20,\n \"price\": 0.8,\n \"category_id\": 1,\n \"farm_id\": 3\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n\t\"name\": \"example\",\n \"quantity\": 20,\n \"price\": 0.8,\n \"category_id\": 4\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_produce_router.js",
+    "groupTitle": "Farmers_Produce"
+  },
+  {
     "type": "get",
     "url": "/api/locations/cities",
     "title": "Get Cities Location",
