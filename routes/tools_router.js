@@ -173,7 +173,7 @@ router.post('/farms/:farmId', (req, res) => {
 })
 
 /**
- * @api {get} /api/tools/farm/:farmId Get Farms Tool By Id
+ * @api {get} /api/tools/farm/:farmId Get A Farms Tools By Id
  * @apiName Get A Farms Tools
  * @apiGroup Tools
  * 
@@ -215,7 +215,7 @@ router.get('/farm/:id', (req, res) => {
 })
 
 /**
- * @api {get} /api/tools/:farmId/:farmId Get single Tool By Id
+ * @api {get} /api/tools/:farmId/:farmId Get Single Tool By Id
  * @apiName Get A Single Tool From A Farm
  * @apiGroup Tools
  * 
@@ -284,6 +284,24 @@ router.get('/', (req, res) => {
             message: 'unexpected error adding your new tool.'
         }))
 
+})
+
+router.put('/:farmId/update/:toolId/', (req, res) => {
+
+    const { farmId, toolId } = req.params
+
+    let update = req.body
+    update.tool_id = Number(toolId)
+    update.farm_id = Number(farmId)
+
+    if(update.quantity){
+        console.log(update)
+        FarmTools.updateTool(update, update.id)
+        .then(updated => res.status(200).json(updated))
+        .catch( err => res.status(500).json(err))
+    }else{
+        res.status(500).json({message: 'unexpected error.'})
+    }
 })
 
 module.exports = router

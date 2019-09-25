@@ -3,7 +3,8 @@ const db = require('../data/dbConfig')
 module.exports = {
     add,
     findByFarmId,
-    findByToolId
+    findByToolId,
+    updateTool
 }
 
 async function add(toolData) {
@@ -33,4 +34,12 @@ function findByToolId(toolId, farmId) {
         })
         .join('tool as t', 't.id', 'ft.tool_id')
         .select('t.name', 'ft.quantity', 'ft.id as farm_tool_id', 'ft.farm_id')
+}
+
+function updateTool(values, toolId){
+    return db('farm_tool')
+    .where({
+        'ft.id': toolId
+    })
+    .update(values);
 }

@@ -216,6 +216,7 @@ router.post('/order/:id', (req, res) => {
         "delivered": order.delivered,
         "consumer_id": Number(consumerId),
     }
+    Orders.add(orderDetails, orderItems)
         .then(order => res.status(201).json({
             order: order
         }))
