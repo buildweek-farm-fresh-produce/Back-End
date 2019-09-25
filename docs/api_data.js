@@ -531,6 +531,36 @@ define({ "api": [
     "groupTitle": "Farm"
   },
   {
+    "type": "get",
+    "url": "/api/farms/:farmId/order",
+    "title": "Get Farm Orders",
+    "name": "GetFarmOrders",
+    "group": "Farm",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "array",
+            "description": "<p>Orders array of order items for a farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user2122\"\n },\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user2122\"\n },\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user7\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farm_router.js",
+    "groupTitle": "Farm"
+  },
+  {
     "type": "put",
     "url": "/api/farms/:farmId",
     "title": "Update Farm",
