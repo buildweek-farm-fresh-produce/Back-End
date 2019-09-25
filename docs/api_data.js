@@ -261,6 +261,45 @@ define({ "api": [
     "name": ""
   },
   {
+    "type": "post",
+    "url": "/api/auth/consumers/order/:consumerId",
+    "title": "Consumer Order Request",
+    "name": "Consumer_Order",
+    "group": "Consumer",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Order",
+            "description": "<p>consumer Order</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 201 Created\n{\n \"order\": {\n   \"order_details\": 30,\n   \"orderItems\": {\n     \"shipping_address\": \"Test Rd.\",\n     \"purchase_date\": \"2019-10-07\",\n     \"delivered\": 0,\n     \"item_purchased\": \"corn\",\n     \"quantity\": 18,\n     \"seller\": \"A.R. Farms\"\n   }\n }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n   \"shipping_address\": \"Test Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"order_items\":[\n       {\n           \"quantity\":18,\n           \"produce_item_id\": 2,\n           \"farm_id\":2\n       },\n       {\n           \"quantity\":5,\n           \"produce_item_id\": 5,           \n           \"farm_id\":1\n       },\n       {\n           \"quantity\":6,\n           \"produce_item_id\": 5,\n           \"farm_id\":4\n       }\n   ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/consumer_routes/consumer_router.js",
+    "groupTitle": "Consumer"
+  },
+  {
     "type": "get",
     "url": "/api/consumers/:id",
     "title": "Get Consumer By Id",
@@ -330,6 +369,49 @@ define({ "api": [
         {
           "title": "Successful Response:",
           "content": "HTTP/1.1 200 OK\n{\n \"id\": 1,\n \"username\": \"consumer_1\",\n \"email\": \"consumer_1@gmail.com\",\n \"password\": \"password\",\n \"city_id\": 1,\n \"state_id\": 1\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/consumer_routes/consumer_router.js",
+    "groupTitle": "Consumers"
+  },
+  {
+    "type": "get",
+    "url": "/api/:consumerId/orders",
+    "title": "Get Consumer Order History",
+    "name": "GetConsumerOrders",
+    "group": "Consumers",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Consumer Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "orders",
+            "description": "<p>array of a consumers past orders</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"recent_orders\": [\n   {\n     \"shipping_address\": \"Example Rd.\",\n     \"purchase_date\": \"2019-10-07\",\n     \"delivered\": false,\n     \"item_purchased\": \"corn\",\n     \"quantity\": 18,\n     \"seller\": \"A.R. Farms\"\n   },\n   {\n     \"shipping_address\": \"Example Rd.\",\n     \"purchase_date\": \"2019-10-07\",\n     \"delivered\": false,\n     \"item_purchased\": \"potato\",\n     \"quantity\": 5,\n     \"seller\": \"Organic Farms\"\n   },\n   {\n     \"shipping_address\": \"Example Rd.\",\n     \"purchase_date\": \"2019-10-07\",\n     \"delivered\": false,\n     \"item_purchased\": \"potato\",\n     \"quantity\": 6,\n     \"seller\": \"Blueberry Farms\"\n   }\n ]\n}",
           "type": "json"
         }
       ]
