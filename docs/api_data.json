@@ -452,7 +452,7 @@
       "examples": [
         {
           "title": "Successful Response:",
-          "content": "HTTP/1.1 201 CREATED\n{ \n \"new_category\": {\n   \"id\": 6,\n   \"name\": \"example\"\n }\n}",
+          "content": "HTTP/1.1 201 CREATED\n{\n  \"id\": 5,\n  \"name\": \"J.W. Farms\",\n  \"address\": \"23528 Milnes Rd.\",\n  \"year_founded\": 1894,\n  \"bio\": \"Locally Grown Produce.\",\n  \"farmer_id\": 3,\n  \"city_id\": 2,\n  \"state_id\": 2\n}",
           "type": "json"
         }
       ]
@@ -492,6 +492,36 @@
         {
           "title": "Successful Response:",
           "content": "HTTP/1.1 200 OK\n{\n \"message\": \"deleted successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farm_router.js",
+    "groupTitle": "Farm"
+  },
+  {
+    "type": "get",
+    "url": "/api/farms/:farmId",
+    "title": "Get Farm By Id",
+    "name": "GetFarmByID",
+    "group": "Farm",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "farm",
+            "description": "<p>Farm farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"id\": 1,\n \"name\": \"Organic Farms\",\n \"address\": \"1213 Dairy Rd.\",\n \"year_founded\": 1955,\n \"bio\": \"We sell only the best.\",\n \"farmer_id\": 1,\n \"city_id\": 1,\n \"state_id\": 1\n}",
           "type": "json"
         }
       ]

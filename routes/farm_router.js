@@ -61,11 +61,15 @@ router.get('/:farmId', (req, res) => {
  * 
  * @apiSuccessExample Successful Response:
  * HTTP/1.1 201 CREATED
- * { 
- *  "new_category": {
- *    "id": 6,
- *    "name": "example"
- *  }
+ * {
+ *   "id": 5,
+ *   "name": "J.W. Farms",
+ *   "address": "23528 Milnes Rd.",
+ *   "year_founded": 1894,
+ *   "bio": "Locally Grown Produce.",
+ *   "farmer_id": 3,
+ *   "city_id": 2,
+ *   "state_id": 2
  * }
  */
 
