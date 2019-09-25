@@ -153,7 +153,7 @@ router.post('/shop/register', (req, res) => {
  * }
  */
 
-router.post('farmer/login', (req, res) => {
+router.post('/farmer/login', (req, res) => {
     const credentials = req.body
     if(credentials.password && credentials.username){
         FarmerUsers.findByUsername(credentials.username)
