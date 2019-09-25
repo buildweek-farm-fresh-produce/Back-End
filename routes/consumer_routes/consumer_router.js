@@ -46,6 +46,47 @@ router.get('/:id', (req, res) => {
         }))
 })
 
+/**
+ * @api {get} /api/:consumerId/orders Get Consumer Order History
+ * @apiName GetConsumerOrders
+ * @apiGroup Consumers
+ * 
+ * @apiParam {Number} id Consumer Id
+ * 
+ * @apiSuccess {Objects[]} orders array of a consumers past orders
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * {
+ *  "recent_orders": [
+ *    {
+ *      "shipping_address": "Example Rd.",
+ *      "purchase_date": "2019-10-07",
+ *      "delivered": false,
+ *      "item_purchased": "corn",
+ *      "quantity": 18,
+ *      "seller": "A.R. Farms"
+ *    },
+ *    {
+ *      "shipping_address": "Example Rd.",
+ *      "purchase_date": "2019-10-07",
+ *      "delivered": false,
+ *      "item_purchased": "potato",
+ *      "quantity": 5,
+ *      "seller": "Organic Farms"
+ *    },
+ *    {
+ *      "shipping_address": "Example Rd.",
+ *      "purchase_date": "2019-10-07",
+ *      "delivered": false,
+ *      "item_purchased": "potato",
+ *      "quantity": 6,
+ *      "seller": "Blueberry Farms"
+ *    }
+ *  ]
+ * }
+ */
+
 router.get('/:id/orders', (req, res) => {
     const {
         id
@@ -59,7 +100,7 @@ router.get('/:id/orders', (req, res) => {
                     order.delivered = false
                 }
             })
-            res.status(200).json(orders)
+            res.status(200).json({recent_orders: orders})
         })
         .catch(err => res.status(500).json({
             message: "We couldn't get your orders at this time."
@@ -109,6 +150,55 @@ router.get('/farms/:cityId/:stateId', (req, res) => {
         }))
 })
 
+/**
+ * @api {post} /api/auth/consumers/order/:consumerId Consumer Order Request
+ * @apiName Consumer Order
+ * @apiGroup Consumer
+ * 
+ * 
+ * @apiSuccess {Object} Order consumer Order
+ * 
+ * @apiParamExample Example Body:
+ * {
+ *    "shipping_address": "Test Rd.",
+ *    "purchase_date": "2019-10-07",
+ *    "delivered": 0,
+ *    "order_items":[
+ *        {
+ *            "quantity":18,
+ *            "produce_item_id": 2,
+ *            "farm_id":2
+ *        },
+ *        {
+ *            "quantity":5,
+ *            "produce_item_id": 5,           
+ *            "farm_id":1
+ *        },
+ *        {
+ *            "quantity":6,
+ *            "produce_item_id": 5,
+ *            "farm_id":4
+ *        }
+ *    ]
+ * }
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 201 Created
+ * {
+ *  "order": {
+ *    "order_details": 30,
+ *    "orderItems": {
+ *      "shipping_address": "Test Rd.",
+ *      "purchase_date": "2019-10-07",
+ *      "delivered": 0,
+ *      "item_purchased": "corn",
+ *      "quantity": 18,
+ *      "seller": "A.R. Farms"
+ *    }
+ *  }
+ * }
+ */
+
 router.post('/order/:id', (req, res) => {
     const consumerId = req.params.id
     const orderId = uuidv1();
@@ -126,8 +216,6 @@ router.post('/order/:id', (req, res) => {
         "delivered": order.delivered,
         "consumer_id": Number(consumerId),
     }
-    // console.log(orderDetails, orderItems)
-    Orders.add(orderDetails, orderItems)
         .then(order => res.status(201).json({
             order: order
         }))
