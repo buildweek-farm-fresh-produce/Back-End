@@ -8,12 +8,16 @@ module.exports = {
     remove,
 }
 
-async function add(toolData){
+async function add(toolData, farmToolData){
     const [newTool] = await db("tool")
         .insert(toolData)
         .returning("*");
 
-    return newTool;
+    const [newFarmTool] = await db('farm_tool')
+        .insert(farmToolData)
+        .returning('*')
+
+    return {tool_added: newTool, farm_tool_data: newFarmTool};
 }
 
 function find(){

@@ -65,7 +65,7 @@ exports.seed = function (knex) {
     {
       quantity: 25,
       produce_item_id: 6,
-      order_id: 'supersecret12346',
+      order_id: 'supersecret12345',
       farm_id: 2,
       consumer_id: 3
     },
@@ -78,14 +78,14 @@ exports.seed = function (knex) {
     },
     {
       quantity: 25,
-      produce_item_id: 8,
+      produce_item_id: 5,
       order_id: 'supersecret1234',
       farm_id: 1,
       consumer_id: 1
     },
     {
       quantity: 25,
-      produce_item_id: 9,
+      produce_item_id: 3,
       order_id: 'supersecret1',
       farm_id: 1,
       consumer_id: 1

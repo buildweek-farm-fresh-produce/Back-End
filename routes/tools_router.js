@@ -32,7 +32,9 @@ const router = express.Router();
 router.get('/categories', (req, res) => {
     ToolsCategory.find()
         .then(categories => res.status(200).json(categories))
-        .catch(err => res.status(500).json({error: err}))
+        .catch(err => res.status(500).json({
+            error: err
+        }))
 })
 
 /**
@@ -52,10 +54,12 @@ router.get('/categories', (req, res) => {
  */
 
 router.get('/category/:id', (req, res) => {
-    const { id } = req.params
+    const {
+        id
+    } = req.params
     ToolsCategory.findById(id)
-        .then( category => res.status(200).json(category))
-        .catch( err => res.status(500).json(err))
+        .then(category => res.status(200).json(category))
+        .catch(err => res.status(500).json(err))
 })
 
 /**
@@ -80,13 +84,48 @@ router.get('/category/:id', (req, res) => {
 
 router.post('/categories', (req, res) => {
     const categoryData = req.body
-    if(categoryData.name){
+    if (categoryData.name) {
         ToolsCategory.add(categoryData)
-            .then((category) => res.status(201).json({category: category}))
-            .catch(err => res.status(500).json({message: 'There was an error creating your category.'}))
-    }else{
-        res.status(401).json({message: 'Please provide the name for your category.'})
+            .then((category) => res.status(201).json({
+                category: category
+            }))
+            .catch(err => res.status(500).json({
+                message: 'There was an error creating your category.'
+            }))
+    } else {
+        res.status(401).json({
+            message: 'Please provide the name for your category.'
+        })
     }
+})
+
+router.post('/', (req, res) => {
+    const toolBody = req.body
+
+    let toolData = {
+        name: toolBody.name,
+        tool_category_id: toolBody.tool_category_id
+    }
+
+    let farmToolData = toolBody.farm_tool_data
+
+    if (toolData.name && toolData.tool_category_id) {
+        Tools.add(toolData, farmToolData)
+            .then(toolResponse => res.status(200).json(toolResponse))
+            .catch(err => res.status(500).json({
+                message: 'unexpected error adding your new tool.'
+            }))
+    }
+})
+
+router.get('/', (req, res) => {
+
+    Tools.find()
+        .then(toolResponse => res.status(200).json(toolResponse))
+        .catch(err => res.status(500).json({
+            message: 'unexpected error adding your new tool.'
+        }))
+
 })
 
 module.exports = router
