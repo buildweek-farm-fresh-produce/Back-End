@@ -161,4 +161,50 @@ router.post('/:farmId', (req, res) => {
     }
 })
 
+/**
+ * @api {put} /api/farmers/produce/:farmId/:itemId Update Produce Item
+ * @apiName UpdateProduceItem
+ * @apiGroup Farmers_Produce
+ * 
+ * 
+ * @apiSuccess {Object} produce_item Produce produce_item
+ * 
+ * @apiParamExample Example Body:
+ * {
+ *	"name": "example",
+ *  "quantity": 20,
+ *  "price": 0.8,
+ *  "category_id": 4
+ * }
+ * 
+ * @apiSuccessExample Successful Response:
+ * {
+ *  "id": 8,
+ *  "name": "example",
+ *  "quantity": 20,
+ *  "price": 0.8,
+ *  "category_id": 1,
+ *  "farm_id": 3
+ * }
+ */
+
+router.put('/:farmId/:itemId', (req, res) => {
+    const {farmId, itemId} = req.params
+    let updatedData = req.body
+    updatedData.id = itemId
+    updatedData.farm_id = farmId
+
+    if(updatedData.name && updatedData.quantity && updatedData.price && updatedData.category_id){
+        ProduceItem.update(updatedData, itemId)
+            .then( updated => {
+                res.status(200).json(updated)
+            })
+            .catch( err => {
+                res.status(500).json(err)
+            })
+    }else{
+        res.status(400).json({message:'please provide all fields '})
+    }
+})
+
 module.exports = router

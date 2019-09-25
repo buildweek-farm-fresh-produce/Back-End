@@ -22,11 +22,19 @@ async function add(values){
 }
 
 function findItemById(itemId){
-
+    
 }
 
-function update(values, id){
+async function update(values, id){
+    await db('produce_item')
+    .where({id: id})
+    .update(values);
 
+    const [updateRes] = await db('produce_item')
+    .where({id: id})
+    .returning('*');
+
+    return updateRes
 }
 
 function remove(id){
