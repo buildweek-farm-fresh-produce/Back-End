@@ -151,9 +151,9 @@ router.get('/farms/:cityId/:stateId', (req, res) => {
 })
 
 /**
- * @api {post} /api/auth/consumers/order/:consumerId Consumer Order Request
+ * @api {post} /api/auth/consumers/order/:consumerId Consumer Order
  * @apiName Consumer Order
- * @apiGroup Consumer
+ * @apiGroup Shopping
  * 
  * 
  * @apiSuccess {Object} Order consumer Order
