@@ -3,6 +3,7 @@ const db = require('../data/dbConfig.js')
 module.exports = {
     add,
     findByCustomerId,
+    findByFarmId
 }
 
 async function add(orderDetails, orderItems) {
@@ -41,3 +42,15 @@ function findByCustomerId(id) {
         .select('o.shipping_address', 'o.purchase_date', 'o.delivered', 'pi.name as item_purchased', 'oi.quantity', 'f.name as seller')
         .orderBy('o.purchase_date', 'desc');
 };
+
+function findByFarmId(id){
+    return db('order_item as oi')
+        .where({
+            'oi.farm_id': id
+        })
+        .join('order as o', 'o.id', 'oi.order_id')
+        .join('consumer_user as c', 'c.id', 'oi.consumer_id')
+        .join('produce_item as pi', 'pi.id', 'oi.produce_item_id')
+        .select('o.shipping_address', 'o.purchase_date', 'o.delivered', 'pi.name as item_purchased', 'oi.quantity', 'c.username as buyer')
+        .orderBy('o.purchase_date', 'desc');
+}

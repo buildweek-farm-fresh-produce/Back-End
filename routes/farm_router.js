@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Farms = require('../models/farm_model.js')
+const Orders = require('../models/order_model.js')
 
 router.get('/', (req, res) => {
     Farms.find()
@@ -161,6 +162,61 @@ router.delete('/:farmId', (req, res) => {
     .catch( err => {
         res.status(500).json({message: 'unexpected error'})
     })
+})
+
+/**
+ * @api {get} /api/farms/:farmId/order Get Farm Orders
+ * @apiName GetFarmOrders
+ * @apiGroup Farm
+ * 
+ * 
+ * @apiSuccess {Object[]}array Orders array of order items for a farm
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * [
+ *  {
+ *    "shipping_address": "Example Rd.",
+ *    "purchase_date": "2019-10-07",
+ *    "delivered": true,
+ *    "item_purchased": "potato",
+ *    "quantity": 5,
+ *    "buyer": "example_user2122"
+ *  },
+ *  {
+ *    "shipping_address": "Example Rd.",
+ *    "purchase_date": "2019-10-07",
+ *    "delivered": true,
+ *    "item_purchased": "potato",
+ *    "quantity": 5,
+ *    "buyer": "example_user2122"
+ *  },
+ *  {
+ *    "shipping_address": "Example Rd.",
+ *    "purchase_date": "2019-10-07",
+ *    "delivered": true,
+ *    "item_purchased": "potato",
+ *    "quantity": 5,
+ *    "buyer": "example_user7"
+ *  }
+ * ]
+ */
+
+router.get('/:farmId/orders', (req, res) => {
+    const { farmId } = req.params
+
+    Orders.findByFarmId(farmId)
+        .then( items => {
+            items.forEach(item => {
+                if(item.delivered){
+                    item.delivered = true
+                }else{
+                    item.delivered = false
+                }
+            })
+            res.status(200).json(items)
+        })
+        .catch( err => res.status(500).json(err))
 })
 
 module.exports = router
