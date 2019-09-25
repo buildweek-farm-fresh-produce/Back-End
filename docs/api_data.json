@@ -570,6 +570,66 @@
     "groupTitle": "Farmers_Produce"
   },
   {
+    "type": "get",
+    "url": "/api/locations/cities",
+    "title": "Get Cities Location",
+    "name": "GetCities",
+    "group": "Location",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "cities",
+            "description": "<p>array of city objects available for selection</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"cities\": [\n   {\n     \"id\": 1,\n     \"name\": \"Chicago\"\n   },\n   {\n     \"id\": 2,\n     \"name\": \"San Francisco\"\n   },\n   {\n     \"id\": 3,\n     \"name\": \"New York\"\n   }\n ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/location_router.js",
+    "groupTitle": "Location"
+  },
+  {
+    "type": "get",
+    "url": "/api/locations/states",
+    "title": "Get States Location",
+    "name": "GetStates",
+    "group": "Location",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "states",
+            "description": "<p>array of state objects available for selection</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"states\": [\n   {\n     \"id\": 1,\n     \"name\": \"Illinois\"\n   },\n   {\n     \"id\": 2,\n     \"name\": \"California\"\n   },\n   {\n     \"id\": 3,\n     \"name\": \"New York\"\n   }\n ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/location_router.js",
+    "groupTitle": "Location"
+  },
+  {
     "type": "post",
     "url": "/api/auth/consumers/order/:consumerId",
     "title": "Post Consumer Order",
