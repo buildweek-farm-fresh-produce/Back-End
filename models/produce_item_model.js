@@ -38,5 +38,7 @@ async function update(values, id){
 }
 
 function remove(id){
-
+    return db('produce_item')
+    .where({id: id})
+    .delete()
 }

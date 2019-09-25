@@ -207,4 +207,30 @@ router.put('/:farmId/:itemId', (req, res) => {
     }
 })
 
+/**
+ * @api {delete} /api/farmers/produce/:itemId Delete Produce Item
+ * @apiName DeleteProduceItem
+ * @apiGroup Farmers_Produce
+ * 
+ * 
+ * @apiSuccess {object} message Produce message with the request status
+ * 
+ * @apiSuccessExample Successful Response:
+ * {
+ *  "message": "successful deletion",
+ * }
+ */
+
+
+router.delete('/:itemId', (req, res) => {
+    const {itemId} = req.params
+        ProduceItem.remove(itemId)
+            .then( removed => {
+                res.status(200).json(removed)
+            })
+            .catch( err => {
+                res.status(500).json(err)
+            })
+})
+
 module.exports = router

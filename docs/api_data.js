@@ -510,6 +510,36 @@ define({ "api": [
     "groupTitle": "Farmers_Produce"
   },
   {
+    "type": "delete",
+    "url": "/api/farmers/produce/:itemId",
+    "title": "Delete Produce Item",
+    "name": "DeleteProduceItem",
+    "group": "Farmers_Produce",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "message",
+            "description": "<p>Produce message with the request status</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "{\n \"message\": \"successful deletion\",\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_produce_router.js",
+    "groupTitle": "Farmers_Produce"
+  },
+  {
     "type": "get",
     "url": "/api/farmers/produce/:farmId",
     "title": "Get All Produce For A Farm",
