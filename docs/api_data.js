@@ -433,6 +433,144 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/api/farmers/produce/categories",
+    "title": "Add Produce Category",
+    "name": "AddProduceCategory",
+    "group": "Farmers_Produce",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "category_id",
+            "description": "<p>Produce category_id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 201 CREATED\n{\n \"new_category\": 8\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n\t\"name\": \"example\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_produce_router.js",
+    "groupTitle": "Farmers_Produce"
+  },
+  {
+    "type": "post",
+    "url": "/api/farmers/produce/:farmId",
+    "title": "Add Produce Item",
+    "name": "AddProduceItem",
+    "group": "Farmers_Produce",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "produce_item_id",
+            "description": "<p>Produce produce_item_id</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "11",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Example Body:",
+          "content": "{\n\t\"name\": \"beef-ribs\",\n \"quantity\": 20,\n \"price\": 5.25,\n \"category_id\": 4\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_produce_router.js",
+    "groupTitle": "Farmers_Produce"
+  },
+  {
+    "type": "get",
+    "url": "/api/farmers/produce/:farmId",
+    "title": "Get All Produce For A Farm",
+    "name": "GetFarmProduce",
+    "group": "Farmers_Produce",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "produce_items",
+            "description": "<p>array of produce item objects belonging to a farm</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"current_stock\": [\n   {\n     \"id\": 5,\n     \"name\": \"potato\",\n     \"quantity\": 100,\n     \"price\": 0.8,\n     \"category_id\": 2,\n     \"farm_id\": 3\n   },\n   {\n     \"id\": 6,\n     \"name\": \"watermelon\",\n     \"quantity\": 100,\n     \"price\": 0.95,\n     \"category_id\": 2,\n     \"farm_id\": 3\n   }\n ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_produce_router.js",
+    "groupTitle": "Farmers_Produce"
+  },
+  {
+    "type": "get",
+    "url": "/api/farmers/produce/categories",
+    "title": "Get Produce Categories For A Farmer",
+    "name": "GetProduceCategories",
+    "group": "Farmers_Produce",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "produce_categories",
+            "description": "<p>array of produce category objects available to farmers</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n{\n \"categories\": [\n   {\n     \"id\": 1,\n     \"name\": \"fruits\"\n   },\n   {\n     \"id\": 2,\n     \"name\": \"vegetables\"\n   },\n   {\n     \"id\": 3,\n     \"name\": \"grains\"\n   }\n ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/farmer_produce_router.js",
+    "groupTitle": "Farmers_Produce"
+  },
+  {
+    "type": "post",
     "url": "/api/auth/consumers/order/:consumerId",
     "title": "Post Consumer Order",
     "name": "Consumer_Order",
@@ -684,7 +822,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/tools/farm/:farmId",
-    "title": "Get Farms Tool By Id",
+    "title": "Get A Farms Tools By Id",
     "name": "Get_A_Farms_Tools",
     "group": "Tools",
     "success": {
@@ -714,7 +852,7 @@ define({ "api": [
   {
     "type": "get",
     "url": "/api/tools/:farmId/:farmId",
-    "title": "Get single Tool By Id",
+    "title": "Get Single Tool By Id",
     "name": "Get_A_Single_Tool_From_A_Farm",
     "group": "Tools",
     "success": {

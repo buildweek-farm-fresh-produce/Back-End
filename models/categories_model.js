@@ -3,11 +3,18 @@ const db = require('../data/dbConfig.js')
 module.exports = {
     find,
     findById,
-    add
+    add,
+    findByName
 }
 
 function find(){
     return db('produce_category')
+}
+
+function findByName(name){
+    return db('produce_category')
+    .where({name:name})
+    .first()
 }
 
 function findById(id){
@@ -22,5 +29,5 @@ async function add(values){
         .insert(values)
         .returning('*')
 
-        return {new_category: newCategory}
+        return newCategory
 }
