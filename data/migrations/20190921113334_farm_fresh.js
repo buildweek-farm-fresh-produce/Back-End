@@ -117,7 +117,6 @@ exports.up = function (knex) {
                 .onUpdate('CASCADE')
                 .onDelete('CASCADE');
             item.string('order_id')
-                .unsigned()
                 .notNullable()
                 .references('id')
                 .inTable('order')

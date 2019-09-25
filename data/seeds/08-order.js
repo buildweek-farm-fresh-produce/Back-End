@@ -1,5 +1,6 @@
 exports.seed = function (knex) {
-  return knex('order').insert([{
+  return knex('order').insert([
+    {
       id: 'supersecret1',
       shipping_address: '123 Main St.',
       purchase_date: '2019-08-06',
