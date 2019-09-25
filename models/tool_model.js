@@ -8,10 +8,12 @@ module.exports = {
     remove,
 }
 
-function add(toolData){
-    return db('tool')
-    .insert(toolData)
-    .then(([id]) => findById(id))
+async function add(toolData){
+    const [newTool] = await db("tool")
+        .insert(toolData)
+        .returning("*");
+
+    return newTool;
 }
 
 function find(){
