@@ -8,7 +8,7 @@ const router = express.Router();
 const uuidv1 = require('uuid/v1');
 
 /**
- * @api {get} /api/consumers/:id Get Consumer By Id
+ * @api {get} /api/consumers/:id Get Consumer By Id -C
  * @apiName GetConsumerById
  * @apiGroup Consumers
  * 
@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
 })
 
 /**
- * @api {get} /api/:consumerId/orders Get Consumer Order History
+ * @api {get} /api/:consumerId/orders Get Consumer Order History -C
  * @apiName GetConsumerOrders
  * @apiGroup Consumers
  * 
@@ -106,7 +106,7 @@ router.get('/:id/orders', (req, res) => {
 })
 
 /**
- * @api {get} /api/consumers/farms/:cityId/:stateId Get Local Farms
+ * @api {get} /api/consumers/farms/:cityId/:stateId Get Local Farms -C
  * @apiName GetLocalFarms
  * @apiGroup Consumers
  * 
@@ -149,7 +149,7 @@ router.get('/farms/:cityId/:stateId', (req, res) => {
 })
 
 /**
- * @api {post} /api/auth/consumers/order/:consumerId Post Consumer Order
+ * @api {post} /api/auth/consumers/order/:consumerId Post Consumer Order -C
  * @apiName Consumer Order
  * @apiGroup Shopping
  * 
@@ -224,7 +224,7 @@ router.post('/order/:id', (req, res) => {
 })
 
 /**
- * @api {get} /api/consumers/shop/:category/:categoryId Get Shopping Category Items
+ * @api {get} /api/consumers/shop/:category/:categoryId Get Shopping Category Items -C
  * @apiName GetCategoryItems
  * @apiGroup Shopping
  * 
@@ -266,7 +266,7 @@ router.get('/shop/category/:id', (req, res) => {
 })
 
 /**
- * @api {get} /api/consumers/shop/categories Get Shopping Categories
+ * @api {get} /api/consumers/shop/categories Get Shopping Categories -C
  * @apiName GetCategories
  * @apiGroup Shopping
  * 
@@ -305,7 +305,7 @@ router.get('/shop/categories', (req, res) => {
 })
 
 /**
- * @api {get} /api/consumers/shop/:cityId Get City's Produce
+ * @api {get} /api/consumers/shop/:cityId Get City's Produce -C
  * @apiName GetCity'sProduce
  * @apiGroup Shopping
  * 
@@ -340,7 +340,7 @@ router.get('/shop/categories', (req, res) => {
 router.get('/shop/:cityId', (req, res) => {
     const { cityId } = req.params
     Cities.findProduceItems(cityId)
-    .then( items => res.status(200).json({items: items}))
+    .then( items => {res.status(200).json({items: items})})
     .catch( err => res.status(500).json(err))
 })
 

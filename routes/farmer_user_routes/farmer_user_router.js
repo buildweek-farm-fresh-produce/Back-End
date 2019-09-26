@@ -4,7 +4,7 @@ const Orders = require('../../models/order_model.js')
 const router = express.Router();
 
 /**
- * @api {get} /api/farmers/:id Get Farmer By Id
+ * @api {get} /api/farmers/:id Get Farmer By Id -F
  * @apiName GetFarmerById
  * @apiGroup Farmers
  * 

@@ -3,7 +3,7 @@ const ProduceCategory = require('../models/categories_model.js')
 const ProduceItem = require('../models/produce_item_model.js')
 
 /**
- * @api {get} /api/farmers/produce/categories Get Produce Categories For A Farmer
+ * @api {get} /api/farmers/produce/categories Get Produce Categories For A Farmer -F
  * @apiName GetProduceCategories
  * @apiGroup Farmers_Produce
  * 
@@ -37,7 +37,7 @@ router.get('/categories', (req, res) => {
 })
 
 /**
- * @api {post} /api/farmers/produce/categories Add Produce Category
+ * @api {post} /api/farmers/produce/categories Add Produce Category -F
  * @apiName AddProduceCategory
  * @apiGroup Farmers_Produce
  * 
@@ -79,7 +79,7 @@ router.post('/categories', (req, res) => {
 })
 
 /**
- * @api {get} /api/farmers/produce/:farmId Get All Produce For A Farm
+ * @api {get} /api/farmers/produce/:farmId Get All Produce For A Farm -F
  * @apiName GetFarmProduce
  * @apiGroup Farmers_Produce
  * 
@@ -117,7 +117,7 @@ router.get('/:farmId', (req, res) => {
 })
 
 /**
- * @api {post} /api/farmers/produce/:farmId Add Produce Item
+ * @api {post} /api/farmers/produce/:farmId Add Produce Item -F
  * @apiName AddProduceItem
  * @apiGroup Farmers_Produce
  * 
@@ -162,7 +162,7 @@ router.post('/:farmId', (req, res) => {
 })
 
 /**
- * @api {put} /api/farmers/produce/:farmId/:itemId Update Produce Item
+ * @api {put} /api/farmers/produce/:farmId/:itemId Update Produce Item -F
  * @apiName UpdateProduceItem
  * @apiGroup Farmers_Produce
  * 
@@ -208,7 +208,7 @@ router.put('/:farmId/:itemId', (req, res) => {
 })
 
 /**
- * @api {delete} /api/farmers/produce/:itemId Delete Produce Item
+ * @api {delete} /api/farmers/produce/:itemId Delete Produce Item -F
  * @apiName DeleteProduceItem
  * @apiGroup Farmers_Produce
  * 

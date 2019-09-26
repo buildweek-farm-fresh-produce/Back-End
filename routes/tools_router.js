@@ -5,7 +5,7 @@ const FarmTools = require('../models/farm_tool_model.js')
 const router = express.Router();
 
 /**
- * @api {get} /api/tools/categories Get Tool Categories
+ * @api {get} /api/tools/categories Get Tool Categories -F
  * @apiName GetToolCategories
  * @apiGroup Tools
  * 
@@ -39,7 +39,7 @@ router.get('/categories', (req, res) => {
 })
 
 /**
- * @api {get} /api/tools/category/:categoryId Get Tool Category By Id
+ * @api {get} /api/tools/category/:categoryId Get Tool Category By Id -F
  * @apiName GetToolCategoryById
  * @apiGroup Tools
  * 
@@ -64,7 +64,7 @@ router.get('/category/:id', (req, res) => {
 })
 
 /**
- * @api {post} /api/tools/categories Add Tool Category
+ * @api {post} /api/tools/categories Add Tool Category -F
  * @apiName AddToolCategory
  * @apiGroup Tools
  * 
@@ -101,7 +101,7 @@ router.post('/categories', (req, res) => {
 })
 
 /**
- * @api {post} /api/tools/farms/:farmId Add Tool
+ * @api {post} /api/tools/farms/:farmId Add Tool -F
  * @apiName AddTool
  * @apiGroup Tools
  * 
@@ -173,7 +173,7 @@ router.post('/farms/:farmId', (req, res) => {
 })
 
 /**
- * @api {get} /api/tools/farm/:farmId Get A Farms Tools By Id
+ * @api {get} /api/tools/farm/:farmId Get A Farms Tools By Id -F
  * @apiName Get A Farms Tools
  * @apiGroup Tools
  * 
@@ -215,7 +215,7 @@ router.get('/farm/:id', (req, res) => {
 })
 
 /**
- * @api {get} /api/tools/:farmId/:farmId Get Single Tool By Id
+ * @api {get} /api/tools/:farmId/:farmId Get Single Tool By Id -F
  * @apiName Get A Single Tool From A Farm
  * @apiGroup Tools
  * 
@@ -243,7 +243,7 @@ router.get('/:farmId/:toolId', (req, res) => {
 })
 
 /**
- * @api {get} /api/tools/ Get All Tools
+ * @api {get} /api/tools/ Get All Tools -F
  * @apiName Get All Tools
  * @apiGroup Tools
  * 

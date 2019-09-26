@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 })
 
 /**
- * @api {get} /api/farms/:farmId Get Farm By Id
+ * @api {get} /api/farms/:farmId Get Farm By Id -F
  * @apiName GetFarmByID
  * @apiGroup Farm
  * 
@@ -43,7 +43,7 @@ router.get('/:farmId', (req, res) => {
 })
 
 /**
- * @api {post} /api/farms/:farmerId Add Farm
+ * @api {post} /api/farms/:farmerId Add Farm -F
  * @apiName AddFarm
  * @apiGroup Farm
  * 
@@ -90,7 +90,7 @@ router.post('/:farmerId', (req, res) => {
 })
 
 /**
- * @api {put} /api/farms/:farmId Update Farm
+ * @api {put} /api/farms/:farmId Update Farm -F
  * @apiName UpdateFarm
  * @apiGroup Farm
  * 
@@ -138,7 +138,7 @@ router.put('/:farmId', (req, res) => {
 })
 
 /**
- * @api {delete} /api/farms/:farmId Delete A Farm
+ * @api {delete} /api/farms/:farmId Delete A Farm -F
  * @apiName DeleteFarm
  * @apiGroup Farm
  * 
@@ -165,7 +165,7 @@ router.delete('/:farmId', (req, res) => {
 })
 
 /**
- * @api {get} /api/farms/:farmId/order Get Farm Orders
+ * @api {get} /api/farms/:farmId/order Get Farm Orders -F
  * @apiName GetFarmOrders
  * @apiGroup Farm
  * 
