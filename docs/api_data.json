@@ -263,7 +263,7 @@
   {
     "type": "get",
     "url": "/api/consumers/:id",
-    "title": "Get Consumer By Id",
+    "title": "Get Consumer By Id -C",
     "name": "GetConsumerById",
     "group": "Consumers",
     "parameter": {
@@ -341,7 +341,7 @@
   {
     "type": "get",
     "url": "/api/:consumerId/orders",
-    "title": "Get Consumer Order History",
+    "title": "Get Consumer Order History -C",
     "name": "GetConsumerOrders",
     "group": "Consumers",
     "parameter": {
@@ -384,7 +384,7 @@
   {
     "type": "get",
     "url": "/api/consumers/farms/:cityId/:stateId",
-    "title": "Get Local Farms",
+    "title": "Get Local Farms -C",
     "name": "GetLocalFarms",
     "group": "Consumers",
     "parameter": {
@@ -434,7 +434,7 @@
   {
     "type": "post",
     "url": "/api/farms/:farmerId",
-    "title": "Add Farm",
+    "title": "Add Farm -F",
     "name": "AddFarm",
     "group": "Farm",
     "success": {
@@ -473,7 +473,7 @@
   {
     "type": "delete",
     "url": "/api/farms/:farmId",
-    "title": "Delete A Farm",
+    "title": "Delete A Farm -F",
     "name": "DeleteFarm",
     "group": "Farm",
     "success": {
@@ -503,7 +503,7 @@
   {
     "type": "get",
     "url": "/api/farms/:farmId",
-    "title": "Get Farm By Id",
+    "title": "Get Farm By Id -F",
     "name": "GetFarmByID",
     "group": "Farm",
     "success": {
@@ -533,7 +533,7 @@
   {
     "type": "get",
     "url": "/api/farms/:farmId/order",
-    "title": "Get Farm Orders",
+    "title": "Get Farm Orders -F",
     "name": "GetFarmOrders",
     "group": "Farm",
     "success": {
@@ -563,7 +563,7 @@
   {
     "type": "put",
     "url": "/api/farms/:farmId",
-    "title": "Update Farm",
+    "title": "Update Farm -F",
     "name": "UpdateFarm",
     "group": "Farm",
     "success": {
@@ -602,7 +602,7 @@
   {
     "type": "get",
     "url": "/api/farmers/:id",
-    "title": "Get Farmer By Id",
+    "title": "Get Farmer By Id -F",
     "name": "GetFarmerById",
     "group": "Farmers",
     "parameter": {
@@ -680,7 +680,7 @@
   {
     "type": "post",
     "url": "/api/farmers/produce/categories",
-    "title": "Add Produce Category",
+    "title": "Add Produce Category -F",
     "name": "AddProduceCategory",
     "group": "Farmers_Produce",
     "success": {
@@ -719,7 +719,7 @@
   {
     "type": "post",
     "url": "/api/farmers/produce/:farmId",
-    "title": "Add Produce Item",
+    "title": "Add Produce Item -F",
     "name": "AddProduceItem",
     "group": "Farmers_Produce",
     "success": {
@@ -758,7 +758,7 @@
   {
     "type": "delete",
     "url": "/api/farmers/produce/:itemId",
-    "title": "Delete Produce Item",
+    "title": "Delete Produce Item -F",
     "name": "DeleteProduceItem",
     "group": "Farmers_Produce",
     "success": {
@@ -788,7 +788,7 @@
   {
     "type": "get",
     "url": "/api/farmers/produce/:farmId",
-    "title": "Get All Produce For A Farm",
+    "title": "Get All Produce For A Farm -F",
     "name": "GetFarmProduce",
     "group": "Farmers_Produce",
     "success": {
@@ -818,7 +818,7 @@
   {
     "type": "get",
     "url": "/api/farmers/produce/categories",
-    "title": "Get Produce Categories For A Farmer",
+    "title": "Get Produce Categories For A Farmer -F",
     "name": "GetProduceCategories",
     "group": "Farmers_Produce",
     "success": {
@@ -848,7 +848,7 @@
   {
     "type": "put",
     "url": "/api/farmers/produce/:farmId/:itemId",
-    "title": "Update Produce Item",
+    "title": "Update Produce Item -F",
     "name": "UpdateProduceItem",
     "group": "Farmers_Produce",
     "success": {
@@ -947,7 +947,7 @@
   {
     "type": "post",
     "url": "/api/auth/consumers/order/:consumerId",
-    "title": "Post Consumer Order",
+    "title": "Post Consumer Order -C",
     "name": "Consumer_Order",
     "group": "Shopping",
     "success": {
@@ -986,7 +986,7 @@
   {
     "type": "get",
     "url": "/api/consumers/shop/categories",
-    "title": "Get Shopping Categories",
+    "title": "Get Shopping Categories -C",
     "name": "GetCategories",
     "group": "Shopping",
     "success": {
@@ -1016,7 +1016,7 @@
   {
     "type": "get",
     "url": "/api/consumers/shop/:category/:categoryId",
-    "title": "Get Shopping Category Items",
+    "title": "Get Shopping Category Items -C",
     "name": "GetCategoryItems",
     "group": "Shopping",
     "parameter": {
@@ -1059,7 +1059,7 @@
   {
     "type": "get",
     "url": "/api/consumers/shop/:cityId",
-    "title": "Get City's Produce",
+    "title": "Get City's Produce -C",
     "name": "GetCity_sProduce",
     "group": "Shopping",
     "parameter": {
@@ -1102,7 +1102,7 @@
   {
     "type": "post",
     "url": "/api/tools/farms/:farmId",
-    "title": "Add Tool",
+    "title": "Add Tool -F",
     "name": "AddTool",
     "group": "Tools",
     "parameter": {
@@ -1141,7 +1141,7 @@
   {
     "type": "post",
     "url": "/api/tools/categories",
-    "title": "Add Tool Category",
+    "title": "Add Tool Category -F",
     "name": "AddToolCategory",
     "group": "Tools",
     "parameter": {
@@ -1180,7 +1180,7 @@
   {
     "type": "get",
     "url": "/api/tools/categories",
-    "title": "Get Tool Categories",
+    "title": "Get Tool Categories -F",
     "name": "GetToolCategories",
     "group": "Tools",
     "success": {
@@ -1210,7 +1210,7 @@
   {
     "type": "get",
     "url": "/api/tools/category/:categoryId",
-    "title": "Get Tool Category By Id",
+    "title": "Get Tool Category By Id -F",
     "name": "GetToolCategoryById",
     "group": "Tools",
     "success": {
@@ -1240,7 +1240,7 @@
   {
     "type": "get",
     "url": "/api/tools/farm/:farmId",
-    "title": "Get A Farms Tools By Id",
+    "title": "Get A Farms Tools By Id -F",
     "name": "Get_A_Farms_Tools",
     "group": "Tools",
     "success": {
@@ -1270,7 +1270,7 @@
   {
     "type": "get",
     "url": "/api/tools/:farmId/:farmId",
-    "title": "Get Single Tool By Id",
+    "title": "Get Single Tool By Id -F",
     "name": "Get_A_Single_Tool_From_A_Farm",
     "group": "Tools",
     "success": {
@@ -1300,7 +1300,7 @@
   {
     "type": "get",
     "url": "/api/tools/",
-    "title": "Get All Tools",
+    "title": "Get All Tools -F",
     "name": "Get_All_Tools",
     "group": "Tools",
     "success": {
