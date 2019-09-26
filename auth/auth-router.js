@@ -4,6 +4,9 @@ const router = express.Router();
 const ShopUsers = require('../models/users/consumer_user_model.js')
 const FarmerUsers = require('../models/users/farmer_user_model.js')
 const generateToken = require('../middleware/generateToken.js')
+const checkFarmerUsername = require('../middleware/check_username_farmer')
+const checkConsumerUsername = require('../middleware/check_username_farmer')
+
 
 /**
  * @api {post} /api/auth/shop/login Consumer Login Request
@@ -59,7 +62,7 @@ router.post('/shop/login', (req, res) => {
                 message: "We couldn't process your login at the moment"
             }))
     } else {
-        res.status(401).json({
+        res.status(400).json({
             message: 'Please provide a username and password.'
         })
     }
@@ -100,7 +103,7 @@ router.post('/shop/login', (req, res) => {
  * }
  */
 
-router.post('/shop/register', (req, res) => {
+router.post('/shop/register', checkConsumerUsername, (req, res) => {
     let userInfo = req.body
 
     if (userInfo.username && userInfo.email && userInfo.password && userInfo.city_id && userInfo.state_id) {
@@ -201,7 +204,7 @@ router.post('/farmer/login', (req, res) => {
  * }
  */
 
-router.post('/farmer/register', (req, res) => {
+router.post('/farmer/register', checkFarmerUsername, (req, res) => {
     let userInfo = req.body
 
     if (userInfo.username && userInfo.email && userInfo.password) {
