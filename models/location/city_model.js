@@ -37,5 +37,5 @@ function findProduceItems(id){
     .join('farm as f', 'f.city_id', 'c.id')
     .join('produce_item as pi', 'pi.farm_id', 'f.id')
     .join('produce_category as pc', 'pc.id', 'pi.category_id')
-    .select('c.id as city_id', 'c.name as city_name', 'pi.name as produce_name', 'pi.quantity', 'pi.price as unit_price', 'pc.name as produce_category', 'f.name as seller')
+    .select('c.id as city_id', 'c.name as city_name','pi.id as produce_id', 'pi.name as produce_name', 'pi.quantity', 'pi.price as unit_price', 'pc.name as produce_category', 'f.name as seller')
 }
