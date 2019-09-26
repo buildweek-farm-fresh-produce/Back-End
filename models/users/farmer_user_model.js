@@ -7,11 +7,10 @@ module.exports = {
     findByUsername,
 }
 
-function add(userData){
-    return db('user_farmer')
+async function add(userData){
+    await db('user_farmer')
     .insert(userData)
-    .then(([id]) => findById(id))
-    .catch(err => err);
+    .returning('*')
 }
 
 function find(){
