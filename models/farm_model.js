@@ -6,7 +6,7 @@ module.exports = {
     find,
     update,
     remove,
-    findById
+    findById,
 }
 
 function findLocal(cityId, stateId) {

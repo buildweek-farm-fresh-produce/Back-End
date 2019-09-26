@@ -3,6 +3,7 @@ const Consumers = require('../../models/users/consumer_user_model.js')
 const Farms = require('../../models/farm_model.js')
 const Orders = require('../../models/order_model.js')
 const Categories = require('../../models/categories_model.js')
+const Cities = require('../../models/location/city_model')
 const router = express.Router();
 const uuidv1 = require('uuid/v1');
 
@@ -300,7 +301,47 @@ router.get('/shop/category/:id', (req, res) => {
 router.get('/shop/categories', (req, res) => {
     Categories.find()
     .then( categories => res.status(200).json(categories))
-    .catch( err => res.status(200).json(err))
+    .catch( err => res.status(500).json(err))
+})
+
+/**
+ * @api {get} /api/consumers/shop/:cityId Get City's Produce
+ * @apiName GetCity'sProduce
+ * @apiGroup Shopping
+ * 
+ * @apiParam {Number} city_id city_id
+ * 
+ * @apiSuccess {Objects[]} produce item array of produce items in specified city
+ * 
+ * @apiSuccessExample Successful Response:
+ * HTTP/1.1 200 OK
+ * [
+ *  {
+ *    "city_id": 1,
+ *    "city_name": "Chicago",
+ *    "produce_name": "carrots",
+ *    "quantity": 100,
+ *    "unit_price": 1.9,
+ *    "produce_category": "vegetables",
+ *    "seller": "Example Farms"
+ *  },
+ *  {
+ *    "city_id": 1,
+ *    "city_name": "Chicago",
+ *    "produce_name": "corn",
+ *    "quantity": 100,
+ *    "unit_price": 1.6,
+ *    "produce_category": "vegetables",
+ *    "seller": "Example Farms"
+ *  }
+ * ]
+ */
+
+router.get('/shop/:cityId', (req, res) => {
+    const { cityId } = req.params
+    Cities.findProduceItems(cityId)
+    .then( categories => res.status(200).json(categories))
+    .catch( err => res.status(500).json(err))
 })
 
 module.exports = router;

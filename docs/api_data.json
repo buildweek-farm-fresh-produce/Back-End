@@ -551,7 +551,7 @@
       "examples": [
         {
           "title": "Successful Response:",
-          "content": "HTTP/1.1 200 OK\n[\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user2122\"\n },\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user2122\"\n },\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": 0,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user7\"\n }\n]",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": true,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user2122\"\n },\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": true,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user2122\"\n },\n {\n   \"shipping_address\": \"Example Rd.\",\n   \"purchase_date\": \"2019-10-07\",\n   \"delivered\": true,\n   \"item_purchased\": \"potato\",\n   \"quantity\": 5,\n   \"buyer\": \"example_user7\"\n }\n]",
           "type": "json"
         }
       ]
@@ -1048,6 +1048,49 @@
         {
           "title": "Successful Response:",
           "content": "HTTP/1.1 200 OK\n[\n {\n   \"id\": 3,\n   \"name\": \"apple\",\n   \"quantity\": 100,\n   \"price\": 1.8,\n   \"category_id\": 1,\n   \"farm_id\": 2,\n   \"farm_name\": \"A.R. Farms\"\n },\n {\n   \"id\": 4,\n   \"name\": \"peach\",\n   \"quantity\": 100,\n   \"price\": 1.95,\n   \"category_id\": 1,\n   \"farm_id\": 2,\n   \"farm_name\": \"A.R. Farms\"\n }\n]",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./routes/consumer_routes/consumer_router.js",
+    "groupTitle": "Shopping"
+  },
+  {
+    "type": "get",
+    "url": "/api/consumers/shop/:cityId",
+    "title": "Get City's Produce",
+    "name": "GetCity_sProduce",
+    "group": "Shopping",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "city_id",
+            "description": "<p>city_id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Objects[]",
+            "optional": false,
+            "field": "produce",
+            "description": "<p>item array of produce items in specified city</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Successful Response:",
+          "content": "HTTP/1.1 200 OK\n[\n {\n   \"city_id\": 1,\n   \"city_name\": \"Chicago\",\n   \"produce_name\": \"carrots\",\n   \"quantity\": 100,\n   \"unit_price\": 1.9,\n   \"produce_category\": \"vegetables\",\n   \"seller\": \"Example Farms\"\n },\n {\n   \"city_id\": 1,\n   \"city_name\": \"Chicago\",\n   \"produce_name\": \"corn\",\n   \"quantity\": 100,\n   \"unit_price\": 1.6,\n   \"produce_category\": \"vegetables\",\n   \"seller\": \"Example Farms\"\n }\n]",
           "type": "json"
         }
       ]
