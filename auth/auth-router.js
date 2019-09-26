@@ -226,18 +226,4 @@ router.post('/farmer/register', (req, res) => {
     }
 })
 
-router.get('/shop/consumers', (req, res) => {
-    ShopUsers.find()
-    .then( users => res.status(200).json({users}))
-    .catch( err => res.status(500).json(err))
-})
-
-router.get('/farm/users', (req, res) => {
-    FarmerUsers.find()
-    .then( users => res.status(200).json({users}))
-    .catch( err => res.status(500).json(err))
-})
-
-
-
 module.exports = router

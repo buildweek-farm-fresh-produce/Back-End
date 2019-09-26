@@ -340,7 +340,7 @@ router.get('/shop/categories', (req, res) => {
 router.get('/shop/:cityId', (req, res) => {
     const { cityId } = req.params
     Cities.findProduceItems(cityId)
-    .then( categories => res.status(200).json(categories))
+    .then( items => res.status(200).json({items: items}))
     .catch( err => res.status(500).json(err))
 })
 
