@@ -5,7 +5,7 @@ const ShopUsers = require('../models/users/consumer_user_model.js')
 const FarmerUsers = require('../models/users/farmer_user_model.js')
 const generateToken = require('../middleware/generateToken.js')
 const checkFarmerUsername = require('../middleware/check_username_farmer')
-const checkConsumerUsername = require('../middleware/check_username_farmer')
+const checkConsumerUsername = require('../middleware/check_username_consumer')
 
 
 /**
