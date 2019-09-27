@@ -8,9 +8,11 @@ module.exports = {
 }
 
 async function add(userData){
-    await db('user_farmer')
+    const [newUser] = await db('user_farmer')
     .insert(userData)
     .returning('*')
+
+    return newUser
 }
 
 function find(){

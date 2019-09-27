@@ -206,7 +206,6 @@ router.post('/farmer/login', (req, res) => {
 
 router.post('/farmer/register', checkFarmerUsername, (req, res) => {
     let userInfo = req.body
-
     if (userInfo.username && userInfo.email && userInfo.password) {
         const hash = bcrypt.hashSync(userInfo.password, 14)
         userInfo.password = hash
