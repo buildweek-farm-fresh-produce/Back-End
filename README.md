@@ -2,7 +2,7 @@
 
 # API Documentation Here => https://farm-fresh-bw.herokuapp.com/docs
 
-#### Backend delpoyed at [AWS Beanstalk](https://farm-fresh-bw.herokuapp.com/) <br>
+#### Backend delpoyed on [Heroku](https://farm-fresh-bw.herokuapp.com/) <br>
 
 ## Getting started
 
