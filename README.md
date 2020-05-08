@@ -1,6 +1,6 @@
 # Farm Fresh Produce API
 
-### Endpoint Documentation Here => https://farm-fresh-bw.herokuapp.com/docs
+### Endpoint documentation here => https://farm-fresh-bw.herokuapp.com/docs
 
 #### Backend delpoyed on [Heroku](https://farm-fresh-bw.herokuapp.com/) <br>
 
