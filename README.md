@@ -23,29 +23,26 @@ To get the server running locally:
 
 # Data Model
 
+---
 #### CITY
 
----
-
 ```
 {
   name: STRING
 }
 ```
 
+---
 #### STATE
 
----
-
 ```
 {
   name: STRING
 }
 ```
 
-#### USER FARMER
-
 ---
+#### USER FARMER
 
 ```
 {
@@ -55,9 +52,8 @@ To get the server running locally:
 }
 ```
 
-#### FARM
-
 ---
+#### FARM
 
 ```
 {
@@ -71,9 +67,8 @@ To get the server running locally:
 }
 ```
 
-#### CONSUMER USER
-
 ---
+#### CONSUMER USER
 
 ```
 {
@@ -85,9 +80,8 @@ To get the server running locally:
 }
 ```
 
-#### PRODUCE CATEGORY
-
 ---
+#### PRODUCE CATEGORY
 
 ```
 {
