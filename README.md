@@ -23,21 +23,83 @@ To get the server running locally:
 
 # Data Model
 
-#### USERS
+#### CITY
 
 ---
 
 ```
 {
-  id: UUID
-  firstName: STRING
-  lastName: STRING
-  email: STRING
-  password: STRING
-  roleId: UUID foreign key in ROLES table
+  name: STRING
 }
 ```
 
+#### STATE
+
+---
+
+```
+{
+  name: STRING
+}
+```
+
+#### USER FARMER
+
+---
+
+```
+{
+  username: STRING
+  email: STRING
+  password: STRING
+}
+```
+
+#### FARM
+
+---
+
+```
+{
+  name: STRING
+  address: STRING
+  year_founded: INTEGER
+  bio: TEXT
+  farmer_id: INTEGER, foreign-key
+  city_id: INTEGER, foreign-key
+  state_id: INTEGER, foreign-key
+}
+```
+
+#### CONSUMER USER
+
+---
+
+```
+{
+  username: STRING
+  email: STRING
+  password: STRING
+  city_id: INTEGER, foreign-key
+  state_id: INTEGER, foreign-key
+}
+```
+
+#### PRODUCE CATEGORY
+
+---
+
+```
+{
+  name: STRING
+  address: STRING
+  year_founded: INTEGER
+  bio: TEXT
+  farmer_id: INTEGER, foreign-key
+  city_id: INTEGER, foreign-key
+  state_id: INTEGER, foreign-key
+}
+```
 ## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
