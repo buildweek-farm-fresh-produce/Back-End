@@ -86,14 +86,47 @@ To get the server running locally:
 ```
 {
   name: STRING
-  address: STRING
-  year_founded: INTEGER
-  bio: TEXT
-  farmer_id: INTEGER, foreign-key
-  city_id: INTEGER, foreign-key
-  state_id: INTEGER, foreign-key
 }
 ```
+
+---
+#### PRODUCE ITEM
+
+```
+{
+  name: STRING
+  quantity: INTEGER
+  price: FLOAT
+  category_id': INTEGER, foreign-key
+  farm_id: INTEGER, foreign-key
+}
+```
+
+---
+#### ORDER
+
+```
+{
+  id: STRING
+  shipping_address: STRING
+  purchase_date: DATE
+  delivered: BOOLEAN
+  consumer_id: INTEGER, foreign-key
+}
+```
+
+#### ORDER ITEM
+
+```
+{
+  quantity: INTEGER
+  produce_item_id: INTEGER, foreign-key
+  farm_id: INTEGER, foreign-key
+  consumer_id: INTEGER, foreign-key
+  order_id: INTEGER, foreign-key
+}
+```
+
 ## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
