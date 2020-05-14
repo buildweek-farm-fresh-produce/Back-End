@@ -127,6 +127,46 @@ To get the server running locally:
 }
 ```
 
+#### TOOL CATEGORY
+
+```
+{
+  name: STRING
+}
+```
+
+#### TOOL
+
+```
+{
+  name: STRING
+  tool_category_id: INTEGER, foreign-key
+}
+```
+
+#### FARM TOOL
+
+```
+{
+  quantity: INTEGER
+  tool_category_id: INTEGER, foreign-key
+  farm_id: INTEGER, foreign-key
+}
+```
+
+#### FARM UPGRADE
+
+```
+{
+  name: STRING
+  price: FLOAT
+  purchased: BOOLEAN
+  image: BINARY
+  purchase_links: BINARY
+  farm_id: INTEGER, foreign-key
+}
+```
+
 ## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
